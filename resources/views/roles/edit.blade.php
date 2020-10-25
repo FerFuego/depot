@@ -37,7 +37,7 @@
                 @csrf()
                 <div class="form-group">
                     <label for="name">Nombre</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" value="{{ $role->name }}" required>
+                    <input type="text" name="name" id="role_name" class="form-control" placeholder="Nombre" value="{{ $role->name }}" required>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="slug">Slug</label>
-                    <input type="slug" name="slug" id="slug" class="form-control" placeholder="Slug" value="{{ $role->slug }}" required>
+                    <input type="text" name="slug" id="role_slug" class="form-control" placeholder="Slug" value="{{ $role->slug }}" required>
                     @error('slug')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                     <label for="roles_permissions">Agregar Permisos</label>
-                    <input type="text" name="roles_permissions" id="roles_permissions" class="form-control" placeholder="Permisos" data-role="taginput">
+                    <input type="text" name="roles_permissions" id="roles_permissions" class="form-control" placeholder="+ Permisos" data-role="taginput"  value="@foreach( $role->permissions as $permission ) {{ $permission->name . ',' }} @endforeach">
                 </div>
                 <input type="submit" value="Guardar Cambios" class="btn btn-success float-right">
             </form> 

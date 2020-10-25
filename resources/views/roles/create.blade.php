@@ -24,7 +24,7 @@
       <div class="col-md-6">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Editar Rol</h3>
+            <h3 class="card-title">Crear Rol</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -36,7 +36,7 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="name">Nombre</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" value="{{ old('name') }}" required>
+                    <input type="text" name="name" id="role_name" class="form-control" placeholder="Nombre" value="{{ old('name') }}" required>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group">
                     <label for="slug">Slug</label>
-                    <input type="slug" name="slug" id="slug" class="form-control" placeholder="Slug" value="{{ old('slug') }}" required>
+                    <input type="text" name="slug" id="role_slug" class="form-control" placeholder="Slug" value="{{ old('slug') }}" required>
                     @error('slug')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group">
                     <label for="roles_permissions">Agregar Permisos</label>
-                    <input type="text" name="roles_permissions" id="roles_permissions" class="form-control" placeholder="Permisos" data-role="taginput">
+                    <input type="text" name="roles_permissions" id="roles_permissions" class="form-control" placeholder="+ Permisos" data-role="taginput">
                 </div>
                 <input type="submit" value="Guardar Cambios" class="btn btn-success float-right">
             </form> 

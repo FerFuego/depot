@@ -67,13 +67,13 @@
                                         <td></td>
                                         <td>
                                             <a class="btn btn-primary btn-sm" href="{{ url('/users/'. $user->id ) }}">
-                                                <i class="fas fa-folder"></i> View
+                                                <i class="fas fa-folder"></i> Ver
                                             </a>
                                             <a class="btn btn-info btn-sm" href="{{ url('/users/'. $user->id .'/edit') }}">
-                                                <i class="fas fa-pencil-alt"></i> Edit
+                                                <i class="fas fa-pencil-alt"></i> Editar
                                             </a>
                                             <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#deleteModal" data-userid="{{ $user->id }}">
-                                                <i class="fas fa-trash"></i> Delete
+                                                <i class="fas fa-trash"></i> Eliminar
                                             </a>
                                         </td>
                                     </tr>

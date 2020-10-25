@@ -61,16 +61,24 @@
                                         <td>{{ $role->id }}</td>
                                         <td>{{ $role->name }}</td>
                                         <td>{{ $role->slug }}</td>
-                                        <td>Permissions</td>
+                                        <td>
+                                            @if ( $role->permissions != null )
+                                                @foreach( $role->permissions as $permission ) 
+                                                    <span class="badge badge-secondary">
+                                                        {{ $permission->name }} 
+                                                    </span>
+                                                @endforeach
+                                            @endif
+                                        </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm" href="{{ url('/roles/'. $role->id ) }}">
-                                                <i class="fas fa-folder"></i> View
+                                                <i class="fas fa-folder"></i> Ver
                                             </a>
                                             <a class="btn btn-info btn-sm" href="{{ url('/roles/'. $role->id .'/edit') }}">
-                                                <i class="fas fa-pencil-alt"></i> Edit
+                                                <i class="fas fa-pencil-alt"></i> Editar
                                             </a>
                                             <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#deleteRolModal" data-roleid="{{ $role->id }}">
-                                                <i class="fas fa-trash"></i> Delete
+                                                <i class="fas fa-trash"></i> Eliminar
                                             </a>
                                         </td>
                                     </tr>

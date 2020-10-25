@@ -15,7 +15,8 @@ mix
     .styles([
         'resources/vendor/fontawesome-free-5.15.1-web/css/all.min.css',
         'resources/css/adminlte.min.css',
-        'resources/css/ionicons.min.css'
+        'resources/css/ionicons.min.css',
+        'resources/css/bootstrap-tagsinput.css'
     ], 'public/css/app.css')
 
     .js('resources/js/app.js', 'public/js')
@@ -23,6 +24,7 @@ mix
     .scripts([
         'resources/vendor/jquery/jquery.min.js',
         'resources/vendor/bootstrap/js/bootstrap.bundle.min.js',
+        'resources/vendor/bootstrap/js/bootstrap.tagsinput.js'
     ], 'public/js/vendor.js')
 
     .copy('resources/vendor/fontawesome-free-5.15.1-web/webfonts', 'public/webfonts')

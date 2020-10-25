@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoleRequest;
+use App\Services\RoleService;
 
 class RolesController extends Controller
 {
@@ -38,9 +39,11 @@ class RolesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RoleRequest $request)
+    public function store(RoleRequest $request, RoleService $service)
     {
-        Role::create($request->only('name','slug'));
+        $role = Role::create($request->only('name','slug'));
+
+        $service->addPermissions( $role, $request );
 
         session()->flash('success','Rol Creado Correctamente!');
         
@@ -80,9 +83,11 @@ class RolesController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(RoleRequest $request, Role $role)
+    public function update(RoleRequest $request, Role $role, RoleService $service)
     {
         $role->fill($request->only('name', 'slug'))->update();
+
+        $service->updatePermissions( $role, $request );
 
         session()->flash('success', 'Rol Actualizado Correctamente!');
 
@@ -99,7 +104,9 @@ class RolesController extends Controller
      */
     public function destroy(Role $role)
     {
+        $role->permissions()->delete();
         $role->delete();
+        $role->permissions()->detach();
 
         session()->flash('success','Rol Eliminado Correctamente!');
 
