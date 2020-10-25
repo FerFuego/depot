@@ -47,6 +47,8 @@ class UsersController extends Controller
 
         User::create($params);
 
+        session()->flash('success','Usuario Creado Correctamente!');
+
         return redirect('/users');
     }
 
@@ -108,6 +110,8 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
+        session()->flash('success','Usuario Eliminado Correctamente!');
 
         return redirect('/users');
     }

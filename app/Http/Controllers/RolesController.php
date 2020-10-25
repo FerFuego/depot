@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Http\Requests\RoleRequest;
 
 class RolesController extends Controller
 {
@@ -15,6 +16,7 @@ class RolesController extends Controller
     public function index()
     {
         $roles = Role::orderBy('id', 'desc')->get();
+
         return view('roles.index', [
             'roles' => $roles
         ]);
@@ -27,7 +29,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create');
     }
 
     /**
@@ -36,9 +38,13 @@ class RolesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
-        //
+        Role::create($request->only('name','slug'));
+
+        session()->flash('success','Rol Creado Correctamente!');
+        
+        return redirect('/roles');
     }
 
     /**
@@ -49,7 +55,9 @@ class RolesController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return view('roles.show', [
+            'role' => $role
+        ]);
     }
 
     /**
@@ -60,7 +68,9 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('roles.edit', [
+            'role'=> $role
+        ]);
     }
 
     /**
@@ -70,9 +80,15 @@ class RolesController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(RoleRequest $request, Role $role)
     {
-        //
+        $role->fill($request->only('name', 'slug'))->update();
+
+        session()->flash('success', 'Rol Actualizado Correctamente!');
+
+        return view('roles.edit', [
+            'role' => $role 
+        ]);
     }
 
     /**
@@ -83,6 +99,10 @@ class RolesController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        session()->flash('success','Rol Eliminado Correctamente!');
+
+        return redirect('/roles');
     }
 }

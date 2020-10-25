@@ -21341,8 +21341,18 @@ $('#deleteModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
   var user_id = button.data('userid');
   var modal = $(this);
-  modal.find('.modal-footer #user_id').val(user_id);
+  /* modal.find('.modal-footer #user_id').val(user_id) */
+
   modal.find('form').attr('action', '/users/' + user_id);
+});
+$('#deleteRolModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var role_id = button.data('roleid');
+  console.log(button);
+  var modal = $(this);
+  /* modal.find('.modal-footer #role_id').val(role_id) */
+
+  modal.find('form').attr('action', '/roles/' + role_id);
 });
 
 /***/ }),

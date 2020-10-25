@@ -5,3 +5,10 @@ $('#deleteModal').on('show.bs.modal', function (event) {
     /* modal.find('.modal-footer #user_id').val(user_id) */
     modal.find('form').attr('action','/users/'+ user_id)
 })
+
+$('#deleteRolModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var role_id = button.data('roleid')
+    var modal = $(this)
+    modal.find('form').attr('action','/roles/'+ role_id)
+})
