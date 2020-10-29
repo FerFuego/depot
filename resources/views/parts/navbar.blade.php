@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-dark navbar-danger">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -111,10 +111,13 @@
         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-        <i class="fas fa-th-large"></i>
-        </a>
-    </li>
+    @if ( Auth::user()->roles->isNotEmpty() ) 
+        <li class="nav-item d-none d-sm-inline-block">
+            <span class="nav-link">
+                <i class="fa fa-user-circle"></i>
+                {{ Auth::user()->roles->first()->name }}
+            </span>
+        </li>
+    @endif
     </ul>
 </nav>

@@ -31,7 +31,5 @@ mix
 
     .copy('resources/img', 'public/img')
 
-    /* .sass('resources/sass/app.scss', 'public/css'); */
-
     .version()
 ;

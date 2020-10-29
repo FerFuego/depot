@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Permission;
-use App\Library\Parsedown;
 use Illuminate\Http\Request;
 
 class RoleService {
@@ -29,18 +28,7 @@ class RoleService {
         $role->permissions()->delete(); 
         $role->permissions()->detach(); 
 
-        $permissions = explode( ',', $request->roles_permissions );
-
-        foreach ( $permissions as $p ) {
-            
-            $permission = Permission::create([
-                'name' => $p,
-                'slug' => strtolower( str_replace(' ','-', $p) )
-            ]);
-
-            $role->permissions()->attach( $permission->id );
-        }
-
+        $this->addPermissions($role, $request);
     }
 
 }

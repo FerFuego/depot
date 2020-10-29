@@ -59,12 +59,28 @@
                             </tfoot>
                             <tbody>
                                 @foreach($users as $key => $user)
-                                    <tr>
+                                    <tr class="{{ Auth::user()->id == $user->id ? 'table-primary' : '' }}">
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>
+                                            @if ( $user->roles->isNotEmpty() )
+                                                @foreach ( $user->roles as $role ) 
+                                                    <span class="badge badge-primary">
+                                                        {{ $role->name }}
+                                                    </span>
+                                                @endforeach
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ( $role->permissions->isNotEmpty() )
+                                                @foreach ( $user->permissions as $permission ) 
+                                                    <span class="badge badge-success">
+                                                        {{ $permission->name }} 
+                                                    </span>
+                                                @endforeach
+                                            @endif
+                                        </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm" href="{{ url('/users/'. $user->id ) }}">
                                                 <i class="fas fa-folder"></i> Ver

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Role extends Model
 {
@@ -14,7 +14,9 @@ class Role extends Model
         'slug'
     ];
 
-    function permissions () {
+    protected $with = ['permissions'];
+
+    public function permissions () {
         return $this->belongsToMany(Permission::class, 'roles_permissions');
     }
 }
