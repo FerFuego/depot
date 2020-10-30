@@ -57,6 +57,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ url('/sucursals') }}" class="nav-link">
+                        <i class="nav-icon fas fa-store"></i>
+                        <p>Sucursales</p>
+                    </a>
+                </li>
+
                 <li class="nav-item has-treeview {{-- menu-open --}}">
                     <a href="#" class="nav-link {{-- active --}}">
                     <i class="nav-icon far fa-plus-square"></i>

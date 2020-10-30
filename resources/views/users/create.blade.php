@@ -22,7 +22,7 @@
 <section class="content">
 	<div class="row">
 	  <div class="col-md-6">
-		<div class="card card-primary">
+		<div class="card">
 		  <div class="card-header">
 			<h3 class="card-title">Agregar Usuario</h3>
 
@@ -66,7 +66,7 @@
 					<input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirmar Contraseña">
 				</div>
 				<div class="form-group">
-					<label for="role">Seleccione el Rol</label>
+					<label for="role">Rol</label>
 					<select name="role" id="role" class="form-control">
 						<option>Seleccione Rol</option>
 						@foreach ( $roles as $role )
@@ -75,7 +75,7 @@
 					</select>
 				</div>
 				<div id="permissions_box">
-					  <label for="roles">Seleccione los Permisos</label>
+					<label for="roles">Seleccione los Permisos</label>
 					<div id="permissions_checkbox_list"></div>
 				</div>
 				<input type="submit" value="Guardar Cambios" class="btn btn-success float-right">

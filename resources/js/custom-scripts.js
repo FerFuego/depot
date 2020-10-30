@@ -22,6 +22,13 @@ $('#deleteRolModal').on('show.bs.modal', function (event) {
     modal.find('form').attr('action','/roles/'+ role_id)
 })
 
+$('#deleteSucursalsModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var sucursal_id = button.data('sucursalid')
+    var modal = $(this)
+    modal.find('form').attr('action','/sucursals/'+ sucursal_id)
+})
+
 $("#roles_permissions").tagsinput('items')
 
 $(document).ready(function () {
