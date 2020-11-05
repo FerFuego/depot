@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('users', 'UsersController');
-    Route::resource('roles', 'RolesController');
-    Route::resource('sucursals', 'SucursalController');
+    Route::resource('users', 'UsersController')->middleware('role:superadmin,admin');
+    Route::resource('roles', 'RolesController')->middleware('can:isSuper');
+    Route::resource('sucursals', 'SucursalController')->middleware('role:superadmin,admin');
 });
 
 Auth::routes();

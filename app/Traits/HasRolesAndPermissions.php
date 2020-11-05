@@ -14,4 +14,13 @@ trait HasRolesAndPermissions {
     public function permissions() {
         return $this->belongsToMany(Permission::class, 'users_permissions');
     }
+
+    public function hasRole($role) {
+        //Cutom Control of middleware
+        if ( $this->roles->contains('slug', $role) ) {
+            return true;
+        }
+
+        return false;
+    }
 }

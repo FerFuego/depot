@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link">
-        <img src="../../img/AdminLTELogo.png"
+        <img src="../../img/logo-xs.jpg"
         alt="AdminLTE Logo"
         class="brand-image img-circle elevation-3"
         style="opacity: .8">
@@ -42,28 +42,29 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                @can('isSuper')
+                    <li class="nav-item">
+                        <a href="{{ url('/roles') }}" class="nav-link">
+                            <i class="nav-icon fas fa-unlock-alt"></i>
+                            <p>Roles</p>
+                        </a>
+                    </li>
+                @endcan
+                @canany(['isSuper','isAdmin'])
+                    <li class="nav-item">
+                        <a href="{{ url('/users') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Usuarios</p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{ url('/roles') }}" class="nav-link">
-                        <i class="nav-icon fas fa-unlock-alt"></i>
-                        <p>Roles</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{{ url('/users') }}" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>Usuarios</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{{ url('/sucursals') }}" class="nav-link">
-                        <i class="nav-icon fas fa-store"></i>
-                        <p>Sucursales</p>
-                    </a>
-                </li>
-
+                    <li class="nav-item">
+                        <a href="{{ url('/sucursals') }}" class="nav-link">
+                            <i class="nav-icon fas fa-store"></i>
+                            <p>Sucursales</p>
+                        </a>
+                    </li>
+                @endcanany
                 <li class="nav-item has-treeview {{-- menu-open --}}">
                     <a href="#" class="nav-link {{-- active --}}">
                     <i class="nav-icon far fa-plus-square"></i>

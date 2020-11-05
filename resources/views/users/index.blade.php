@@ -59,6 +59,9 @@
                             </tfoot>
                             <tbody>
                                 @foreach($users as $key => $user)
+                                    {{-- Skip superadmin --}}
+                                    @if ( ! Auth::user()->hasRole('superadmin') && $user->hasRole('superadmin') ) @continue; @endif 
+
                                     <tr class="{{ Auth::user()->id == $user->id ? 'table-primary' : '' }}">
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>

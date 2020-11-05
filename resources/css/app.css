@@ -1,10 +1,6 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 8 | @import '~bootstrap/scss/bootstrap';
- *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   sass\app.scss 8:9  root stylesheet */
-
+.bg-orange {
+  background-color: #E56E1F;
+}
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
       "Droid Sans Mono", monospace, monospace;
@@ -13,4 +9,38 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
+}
+
+.logo-depot {
+  display: block;
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  width: 250px;
+}
+.logo-depot img {
+  height: auto;
+  width: 100%;
+}
+
+.login-container {
+  background-image: url('/img/bg.jpg');
+  background-size: cover;
+  background-position: top center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.login-container__column {
+    background-color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container__column .card {
+  box-shadow: none;
+  width: 80%;
 }

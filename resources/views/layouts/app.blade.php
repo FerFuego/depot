@@ -38,13 +38,22 @@
 
             </div>
 
-            @include('parts/modals')
+            @guest
 
-            @include('parts/footer')
+                {{-- Nothing --}}
 
-            <aside class="control-sidebar control-sidebar-dark">
-                <!-- Control sidebar content goes here -->
-            </aside>
+            @else
+   
+                @include('parts/modals')
+
+                @include('parts/footer')
+
+                <aside class="control-sidebar control-sidebar-dark">
+                    <!-- Control sidebar content goes here -->
+                </aside>
+
+            @endguest
+
 
         </div>
         <!-- ./wrapper -->

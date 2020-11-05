@@ -25,9 +25,8 @@
 				<div class="col-12">
 						<div class="card">
 								<div class="card-header">
-										<h3><b>Nombre:</b> {{ $user->name }}</h3>
-										<h4><b>Email:</b> {{ $user->email }}</h4>
-										<h4><b>Ultimo Ingreso:</b> ...</h4>
+										<h3><b>{{ $user->name }}</b></h3>
+										<h4><b>{{ $user->email }}</b></h4>
 								</div>
 								<div class="card-body">
 										<h5 class="card-title">Rol</h5>

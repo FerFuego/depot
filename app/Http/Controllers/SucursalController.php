@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Sucursal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class SucursalController extends Controller
 {
@@ -29,6 +30,10 @@ class SucursalController extends Controller
      */
     public function create()
     {
+        if ( Gate::denies('isSuper') || Gate::denies('isAdmin') ) {
+            Abort(403);
+        }
+
         $users = User::orderBy('name', 'asc')->get();
 
         return view('sucursals.create', [

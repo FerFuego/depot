@@ -87,3 +87,47 @@
 .bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+}
+
+.logo-depot {
+  display: block;
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  width: 250px;
+}
+.logo-depot img {
+  height: auto;
+  width: 100%;
+}
+
+.login-container {
+  background-image: url('/img/bg.jpg');
+  background-size: cover;
+  background-position: top center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.login-container__column {
+    background-color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container__column .card {
+  box-shadow: none;
+  width: 80%;
+}

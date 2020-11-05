@@ -25,8 +25,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Nombre: {{ $role->name }}</h3>
-                    <h4>Slug: {{ $role->slug }}</h4>
+                    <h3><b>Nombre:</b> {{ $role->name }}</h3>
+                    <h4><b>Slug:</b> {{ $role->slug }}</h4>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Permisos</h5>

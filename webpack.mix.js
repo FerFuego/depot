@@ -16,7 +16,8 @@ mix
         'resources/vendor/fontawesome-free-5.15.1-web/css/all.min.css',
         'resources/css/adminlte.min.css',
         'resources/css/ionicons.min.css',
-        'resources/css/bootstrap-tagsinput.css'
+        'resources/css/bootstrap-tagsinput.css',
+        'resources/css/app.css'
     ], 'public/css/app.css')
 
     .js('resources/js/app.js', 'public/js')
