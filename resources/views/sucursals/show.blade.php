@@ -32,11 +32,13 @@
                                         <h5><b>Telefono:</b> {{ $sucursal->phone }}</h5>
                                         <h5><b>Email:</b> {{ $sucursal->email }}</h5>
                                         <h5><b>Horarios:</b> {{ $sucursal->schedule }}</h5>
-										<h5><b>Gerente:<b>
-                                            @if ( $sucursal->user_id != null )
-                                                <span class="badge badge-success">
-                                                        {{ $sucursal->user->name }} 
-                                                </span>
+										<h5><b>Gerentes:<b>
+                                            @if ( $sucursal->users->isNotEmpty() )
+                                                @foreach ( $sucursal->users as $user ) 
+                                                    <span class="badge badge-success">
+                                                        {{ $user->name }} 
+                                                    </span>
+                                                @endforeach
                                             @endif
                                         </h5>
 								</div>

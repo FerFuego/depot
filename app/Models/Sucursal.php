@@ -14,13 +14,14 @@ class Sucursal extends Model
         'address',
         'phone',
         'email',
-        'schedule',
-        'user_id'
+        'schedule'
     ];
 
-    protected $with = ['user'];
-
-    public function user () {
-        return $this->belongsTo(User::class);
+    /**
+     * Relationships
+     * @return collection
+     */
+    public function users () {
+        return $this->belongsToMany(User::class, 'users_sucursals');
     }
 }

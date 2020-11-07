@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Sucursal;
 use Illuminate\Http\Request;
+use App\Services\SucursalService;
 use Illuminate\Support\Facades\Gate;
 
 class SucursalController extends Controller
@@ -30,9 +31,9 @@ class SucursalController extends Controller
      */
     public function create()
     {
-        if ( Gate::denies('isSuper') || Gate::denies('isAdmin') ) {
+        /* if ( Gate::denies('isSuper') || Gate::denies('isAdmin') ) {
             Abort(403);
-        }
+        } */
 
         $users = User::orderBy('name', 'asc')->get();
 
@@ -47,9 +48,11 @@ class SucursalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, SucursalService $service)
     {
-        Sucursal::create($request->all());
+        $sucursal = Sucursal::create($request->except('gerents'));
+
+        $service->addGerents( $sucursal, $request );
 
         session()->flash('success','Sucursal Creada Correctamente!');
 
@@ -92,9 +95,11 @@ class SucursalController extends Controller
      * @param  \App\Models\Sucursal  $sucursal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sucursal $sucursal)
+    public function update(Request $request, Sucursal $sucursal, SucursalService $service)
     {
-        $sucursal->fill( $request->all() )->update();
+        $sucursal->fill( $request->except('gerents') )->update();
+
+        $service->updateGerents( $sucursal, $request );
 
         session()->flash('success','Sucursal Actualizada Correctamente!');
 

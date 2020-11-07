@@ -63,4 +63,6 @@ $(document).ready(function () {
             })
         })
     })
-})
+});
+
+$('#select_gerent').selectpicker();

@@ -76,7 +76,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ( $role->permissions->isNotEmpty() )
+                                            @if ( $user->permissions->isNotEmpty() )
                                                 @foreach ( $user->permissions as $permission ) 
                                                     <span class="badge badge-success">
                                                         {{ $permission->name }} 

@@ -45,7 +45,7 @@
                                     <th>Telefono</th>
                                     <th>Email</th>
                                     <th>Horario</th>
-                                    <th>Gerente</th>
+                                    <th>Gerentes</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -57,7 +57,7 @@
                                     <th>Telefono</th>
                                     <th>Email</th>
                                     <th>Horario</th>
-                                    <th>Gerente</th>
+                                    <th>Gerentes</th>
                                     <th>Acciones</th>
                                 </tr>
                             </tfoot>
@@ -71,7 +71,13 @@
                                         <td>{{ $sucursal->email }}</td>
                                         <td>{{ $sucursal->schedule }}</td>
                                         <td>
-                                            <span class="badge badge-success">{{ $sucursal->user->name }}</span>
+                                            @if ( $sucursal->users->isNotEmpty() )
+                                                @foreach ( $sucursal->users as $user ) 
+                                                    <span class="badge badge-success">
+                                                        {{ $user->name }} 
+                                                    </span>
+                                                @endforeach
+                                            @endif
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm" href="{{ url('/sucursals/'. $sucursal->id ) }}">
