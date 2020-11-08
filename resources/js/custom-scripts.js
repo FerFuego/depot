@@ -29,6 +29,13 @@ $('#deleteSucursalsModal').on('show.bs.modal', function (event) {
     modal.find('form').attr('action','/sucursals/'+ sucursal_id)
 })
 
+$('#deleteSaleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var sale_id = button.data('saleid')
+    var modal = $(this)
+    modal.find('form').attr('action','/sales/'+ sale_id)
+})
+
 $("#roles_permissions").tagsinput('items')
 
 $(document).ready(function () {
@@ -65,4 +72,5 @@ $(document).ready(function () {
     })
 });
 
+$('#select_sucursal').selectpicker();
 $('#select_gerent').selectpicker();

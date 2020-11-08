@@ -24,4 +24,8 @@ class Sucursal extends Model
     public function users () {
         return $this->belongsToMany(User::class, 'users_sucursals');
     }
+
+    public function sales () {
+        return $this->hasMany(Sale::class, 'sales_sucursals');
+    }
 }

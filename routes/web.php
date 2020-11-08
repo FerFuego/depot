@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController')->middleware('role:superadmin,admin');
     Route::resource('roles', 'RolesController')->middleware('can:isSuper');
     Route::resource('sucursals', 'SucursalController')->middleware('role:superadmin,admin');
+    Route::resource('sales', 'SalesController');
 });
 
 Auth::routes();

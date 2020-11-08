@@ -21257,15 +21257,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./adminlte */ "./resources/js/adminlte.js");
 
-__webpack_require__(/*! ./custom-scripts */ "./resources/js/custom-scripts.js");
-/*
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-*/
-//window.Vue = require('vue');
+__webpack_require__(/*! ./custom-scripts */ "./resources/js/custom-scripts.js"); //window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -21372,6 +21364,12 @@ $('#deleteSucursalsModal').on('show.bs.modal', function (event) {
   var modal = $(this);
   modal.find('form').attr('action', '/sucursals/' + sucursal_id);
 });
+$('#deleteSaleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var sale_id = button.data('saleid');
+  var modal = $(this);
+  modal.find('form').attr('action', '/sales/' + sale_id);
+});
 $("#roles_permissions").tagsinput('items');
 $(document).ready(function () {
   var permissions_box = $('#permissions_box');
@@ -21398,6 +21396,7 @@ $(document).ready(function () {
     });
   });
 });
+$('#select_sucursal').selectpicker();
 $('#select_gerent').selectpicker();
 
 /***/ }),

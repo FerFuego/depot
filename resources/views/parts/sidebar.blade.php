@@ -64,6 +64,12 @@
                             <p>Sucursales</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/sales') }}" class="nav-link">
+                            <i class="nav-icon fas fa-money-check-alt"></i>
+                            <p>Ventas</p>
+                        </a>
+                    </li>
                 @endcanany
                 <li class="nav-item has-treeview {{-- menu-open --}}">
                     <a href="#" class="nav-link {{-- active --}}">
