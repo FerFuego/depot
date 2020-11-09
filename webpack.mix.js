@@ -19,6 +19,8 @@ mix
         'resources/css/bootstrap-tagsinput.css',
         'resources/css/bootstrap-select.css',
         'resources/css/bootstrap-datetimepicker.css',
+        'resources/vendor/datatables-bs4/css/dataTables.bootstrap4.min.css',
+        'resources/vendor/datatables-responsive/css/responsive.bootstrap4.min.css',
         'resources/css/app.css'
     ], 'public/css/app.css')
 
@@ -30,7 +32,12 @@ mix
         'resources/vendor/bootstrap/js/bootstrap.bundle.min.js',
         'resources/vendor/bootstrap/js/bootstrap.tagsinput.js',
         'resources/vendor/bootstrap/js/bootstrap-select.js',
-        'resources/vendor/bootstrap/js/bootstrap-datetimepicker.js'
+        'resources/vendor/bootstrap/js/bootstrap-datetimepicker.js',
+        'resources/vendor/datatables/jquery.dataTables.min.js',
+        'resources/vendor/datatables-bs4/js/dataTables.bootstrap4.min.js',
+        'resources/vendor/datatables-responsive/js/dataTables.responsive.min.js',
+        'resources/vendor/datatables-responsive/js/responsive.bootstrap4.min.js',
+        'resources/js/custom-scripts.js'
     ], 'public/js/vendor.js')
 
     .copy('resources/vendor/fontawesome-free-5.15.1-web/webfonts', 'public/webfonts')
