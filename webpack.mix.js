@@ -18,6 +18,7 @@ mix
         'resources/css/ionicons.min.css',
         'resources/css/bootstrap-tagsinput.css',
         'resources/css/bootstrap-select.css',
+        'resources/css/bootstrap-datetimepicker.css',
         'resources/css/app.css'
     ], 'public/css/app.css')
 
@@ -25,9 +26,11 @@ mix
 
     .scripts([
         'resources/vendor/jquery/jquery.min.js',
+        'resources/vendor/moment/moment.js',
         'resources/vendor/bootstrap/js/bootstrap.bundle.min.js',
         'resources/vendor/bootstrap/js/bootstrap.tagsinput.js',
         'resources/vendor/bootstrap/js/bootstrap-select.js',
+        'resources/vendor/bootstrap/js/bootstrap-datetimepicker.js'
     ], 'public/js/vendor.js')
 
     .copy('resources/vendor/fontawesome-free-5.15.1-web/webfonts', 'public/webfonts')
