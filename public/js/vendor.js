@@ -6599,6 +6599,13 @@ $('#deleteSaleModal').on('show.bs.modal', function (event) {
     modal.find('form').attr('action','/sales/'+ sale_id)
 })
 
+$('#deleteTaskModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var task_id = button.data('taskid')
+    var modal = $(this)
+    modal.find('form').attr('action','/tasks/'+ task_id)
+})
+
 $("#roles_permissions").tagsinput('items')
 
 $(document).ready(function () {
@@ -6665,4 +6672,4 @@ $('#calendar').datetimepicker({
     isRTL: false,
     showMonthAfterYear: false,
     yearSuffix: ''
-  })
+})

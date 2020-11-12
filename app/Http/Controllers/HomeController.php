@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $sucursals = auth()->user()->sucursals;
+        return view('home', [
+            'sucursals' => $sucursals
+        ]);
     }
 }

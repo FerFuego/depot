@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                     </ol>
                 </div>
             </div>
@@ -19,77 +19,70 @@
     </section>
 
     <!-- Main content -->
-    <!-- Main content -->
     <section class="content">
+
         <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>150</h3>
-  
-                  <p>New Orders</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
-  
-                  <p>Bounce Rate</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>44</h3>
-  
-                  <p>User Registrations</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3>65</h3>
-  
-                  <p>Unique Visitors</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-          </div>
-          <!-- /.row -->
-        </div>
+			<div class="row">
+
+				<div class="col-lg-3 col-6">
+					<div class="small-box bg-info">
+						<div class="inner">
+							<h3>150</h3>
+							<p>New Orders</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-bag"></i>
+						</div>
+						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+				
+				<div class="col-lg-3 col-6">
+					<div class="small-box bg-success">
+						<div class="inner">
+							<h3>53<sup style="font-size: 20px">%</sup></h3>
+							<p>Bounce Rate</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-stats-bars"></i>
+						</div>
+						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+				
+				<div class="col-lg-3 col-6">
+					<div class="small-box bg-warning">
+						<div class="inner">
+							<h3>44</h3>
+							<p>User Registrations</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-person-add"></i>
+						</div>
+						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-6">
+					<div class="small-box bg-danger">
+						<div class="inner">
+							<h3>65</h3>
+							<p>Unique Visitors</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-pie-graph"></i>
+						</div>
+						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
         <div class="row">
+
             <section class="col-lg-7 connectedSortable">
-                <!-- Default box -->
+
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Title</h3>
@@ -101,16 +94,78 @@
                     <div class="card-body">
                         Start creating your amazing application!
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                         Footer
                     </div>
-                    <!-- /.card-footer-->
-                </div>
-                <!-- /.card -->
-            </section>
-            <section class="col-lg-5 connectedSortable">
-                <!-- Calendar -->
+				</div>
+				
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Title</h3>
+						<div class="card-tools">
+							<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fas fa-minus"></i></button>
+							<button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove"><i class="fas fa-times"></i></button>
+						</div>
+					</div>
+					<div class="card-body">
+						Start creating your amazing application!
+					</div>
+					<!-- /.card-body -->
+					<div class="card-footer">
+						Footer
+					</div>
+					<!-- /.card-footer-->
+				</div>
+
+			</section>
+			
+			<section class="col-lg-5 connectedSortable">
+
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Cargar Ventas</h3>
+						<div class="card-tools">
+							<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fas fa-minus"></i></button>
+							<button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove"><i class="fas fa-times"></i></button>
+						</div>
+					</div>
+					<div class="card-body">
+						<form action="{{ route('sales.store') }}" method="POST">
+							{{ csrf_field() }}
+							<div class="form-group">
+							<label for="sucursal">Sucursal</label>
+							<select name="sucursal" id="select_sucursal" class="form-control selectpicker" multiple data-live-search="true">
+								<option>Seleccione Sucursal</option>
+								@foreach ( $sucursals as $sucursal )
+								<option value="{{ $sucursal->id }}" @if ($loop->first) selected @endif>{{ $sucursal->name }}</option>
+								@endforeach
+							</select>
+							</div>
+							<div class="form-group">
+								<label for="amount">Importe parcial en turno</label>
+								<input type="text" name="amount" id="amount" class="form-control" placeholder="Importe" value="{{ old('amount') }}" required>
+								@error('amount')
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+								@enderror
+							</div>
+							<div class="form-group">
+								<label for="clients">Cantidad de clientes en turno</label>
+								<input type="text" name="clients" id="clients" class="form-control" placeholder="Clientes" value="{{ old('clients') }}" required>
+								@error('clients')
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+								@enderror
+							</div>
+							<input type="submit" value="Guardar" class="btn btn-success float-right">
+						</form> 
+					</div>
+					<!-- /.card-body -->
+				</div>
+
+				<!-- Calendar -->
                 <div class="card bg-gradient-success">
                     <div class="card-header border-0">
                         <h3 class="card-title">
@@ -146,11 +201,13 @@
                     </div>
                     <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
-            </section>
-        </div>
+				<!-- /.card -->
+				
+			</section>
+			
+		</div>
+		
     </section>
-    <!-- /.content -->
 
 @endsection
 

@@ -19,6 +19,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', 'RolesController')->middleware('can:isSuper');
     Route::resource('sucursals', 'SucursalController')->middleware('role:superadmin,admin');
     Route::resource('sales', 'SalesController');
+    Route::resource('tasks', 'TaskController');
+    Route::resource('todos', 'TodoController');
 });
 
 Auth::routes();
