@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Gestion de Ventas</h1>
+          <h1>Gestion de Listas de Tareas</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Ventas</li>
+            <li class="breadcrumb-item active">Listas de Tareas</li>
           </ol>
         </div>
       </div>
@@ -24,8 +24,8 @@
         <div class="col-12">
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="fas fa-money-check-alt"></i>
-                    Ventas
+                    <i class="far fa-plus-square"></i>
+                    Listas de Tareas
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                           <i class="fas fa-minus"></i></button>
@@ -34,51 +34,48 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('sales.create') }}" class="btn btn-info mb-2"><i class="fas fa-plus"></i> Agregar Nueva Venta</a>
+                    <a href="{{ route('todos.create') }}" class="btn btn-info mb-2"><i class="fas fa-plus"></i> Agregar Nueva Lista de Tarea</a>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped" id="tableSales" width="100%" cellspacing="0">
+                        <table class="table table-bordered table-striped" id="tabletodos" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Fecha / Hora</th>
+                                    <th>Nombre</th>
                                     <th>Sucursal</th>
-                                    <th>Importe</th>
-                                    <th>Clientes</th>
+                                    <th>Dias</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Fecha / Hora</th>
+                                    <th>Nombre</th>
                                     <th>Sucursal</th>
-                                    <th>Importe</th>
-                                    <th>Clientes</th>
+                                    <th>Dias</th>
                                     <th>Acciones</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach($sales as $key => $sale)
+                                @foreach($todos as $todo)
                                     <tr>
-                                        <td>{{ $sale->id }}</td>
-                                        <td>{{ $sale->created_at->format('j/m/Y - H:i \h\s') }}</td>
+                                        <td>{{ $todo->id }}</td>
+                                        <td>{{ $todo->name }}</td>
                                         <td>
-                                            @if ( $sale->sucursal->isNotEmpty() )
-                                                @foreach ( $sale->sucursal as $sucursal ) 
-                                                    {{ $sucursal->name }} 
+                                            @if ( $todo->sucursal->isNotEmpty() )
+                                                @foreach ( $todo->sucursal as $sucursal ) 
+                                                    <span class="badge badge-success">{{ $sucursal->name }}</span>
                                                 @endforeach
                                             @endif
                                         </td>
-                                        <td>${{ $sale->amount }}</td>
-                                        <td>{{ $sale->clients }}</td>
+                                        <td>{{ $todo->days }}</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="{{ url('/sales/'. $sale->id ) }}">
+                                            <a class="btn btn-primary btn-sm" href="{{ url('/todos/'. $todo->id ) }}">
                                                 <i class="fas fa-folder"></i> Ver
                                             </a>
-                                            <a class="btn btn-info btn-sm" href="{{ url('/sales/'. $sale->id .'/edit') }}">
+                                            <a class="btn btn-info btn-sm" href="{{ url('/todos/'. $todo->id .'/edit') }}">
                                                 <i class="fas fa-pencil-alt"></i> Editar
                                             </a>
-                                            <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#deleteSaleModal" data-saleid="{{ $sale->id }}">
+                                            <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#deleteTodoModal" data-todoid="{{ $todo->id }}">
                                                 <i class="fas fa-trash"></i> Eliminar
                                             </a>
                                         </td>

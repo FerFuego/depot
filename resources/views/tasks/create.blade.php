@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label>Detalle de la tarea (Opcional)</label>
                     <textarea name="description" class="form-control" rows="3" placeholder="Detalle de la tarea" >{{ old('description') }}</textarea>
-                  </div>
+                </div>
                 <input type="submit" value="Guardar Cambios" class="btn btn-success float-right">
             </form> 
           </div>

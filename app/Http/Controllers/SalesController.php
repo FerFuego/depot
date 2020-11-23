@@ -16,6 +16,7 @@ class SalesController extends Controller
     public function index()
     {
         $sales = Sale::orderBy('created_at', 'desc')->get();
+
         return view('sales.index', [
             'sales' => $sales
         ]);
@@ -29,6 +30,7 @@ class SalesController extends Controller
     public function create()
     {
         $sucursals = auth()->user()->sucursals;
+        
         return view('sales.create', [
             'sucursals' => $sucursals
         ]);

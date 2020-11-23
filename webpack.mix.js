@@ -19,6 +19,7 @@ mix
         'resources/css/bootstrap-tagsinput.css',
         'resources/css/bootstrap-select.css',
         'resources/css/bootstrap-datetimepicker.css',
+        'resources/css/bootstrap-duallistbox.min.css',
         'resources/vendor/datatables-bs4/css/dataTables.bootstrap4.min.css',
         'resources/vendor/datatables-responsive/css/responsive.bootstrap4.min.css',
         'resources/css/app.css'
@@ -33,6 +34,7 @@ mix
         'resources/vendor/bootstrap/js/bootstrap.tagsinput.js',
         'resources/vendor/bootstrap/js/bootstrap-select.js',
         'resources/vendor/bootstrap/js/bootstrap-datetimepicker.js',
+        'resources/vendor/bootstrap/js/bootstrap.duallistbox.min.js',
         'resources/vendor/datatables/jquery.dataTables.min.js',
         'resources/vendor/datatables-bs4/js/dataTables.bootstrap4.min.js',
         'resources/vendor/datatables-responsive/js/dataTables.responsive.min.js',

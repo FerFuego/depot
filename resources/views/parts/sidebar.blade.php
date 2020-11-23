@@ -89,6 +89,12 @@
                                 <p>Ver todas las Tareas</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/todolists') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ver Tareas Realizadas</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                {{--  <li class="nav-header">MISCELLANEOUS</li>

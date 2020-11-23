@@ -28,4 +28,8 @@ class Sucursal extends Model
     public function sales () {
         return $this->hasMany(Sale::class, 'sales_sucursals');
     }
+
+    public function todo_lists () {
+        return $this->hasMany(TodoList::class, 'sucursals_todo_lists');
+    }
 }

@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('sales', 'SalesController');
     Route::resource('tasks', 'TaskController');
     Route::resource('todos', 'TodoController');
+    Route::resource('todolists', 'TodoListController');
 });
 
 Auth::routes();

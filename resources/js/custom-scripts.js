@@ -43,6 +43,13 @@ $('#deleteTaskModal').on('show.bs.modal', function (event) {
     modal.find('form').attr('action','/tasks/'+ task_id)
 })
 
+$('#deleteTodoModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var todo_id = button.data('todoid')
+    var modal = $(this)
+    modal.find('form').attr('action','/todos/'+ todo_id)
+})
+
 $("#roles_permissions").tagsinput('items')
 
 $(document).ready(function () {
@@ -109,4 +116,7 @@ $('#calendar').datetimepicker({
     isRTL: false,
     showMonthAfterYear: false,
     yearSuffix: ''
-})
+});
+
+//Bootstrap Duallistbox
+$('.duallistbox').bootstrapDualListbox();
