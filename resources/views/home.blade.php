@@ -83,23 +83,43 @@
 
             <section class="col-lg-7 connectedSortable">
 
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Title</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fas fa-minus"></i></button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove"><i class="fas fa-times"></i></button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        Start creating your amazing application!
-                    </div>
-                    <div class="card-footer">
-                        Footer
-                    </div>
-				</div>
+				@foreach( $sucursals as $j => $sucursal)
+
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Lista de Tareas Diarias</h3>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fas fa-minus"></i></button>
+								<button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove"><i class="fas fa-times"></i></button>
+							</div>
+						</div>
+						<div class="card-body">							
+							<ul class="todo-list" data-widget="todo-list">
+								@foreach( $sucursal->todo_lists as $k => $task )
+									@if ( $task->created_at->format('d') == date('d') )
+										<li class="{{ $task->is_complete ? 'done' : '' }}">
+											<span class="handle">
+												<i class="fas fa-ellipsis-v"></i>
+												<i class="fas fa-ellipsis-v"></i>
+											</span>
+											<div  class="icheck-primary d-inline ml-2">
+												<input type="checkbox" value="{{ $task->id }}" name="task_id" id="todoCheck{{ $j.$k }}" {{ $task->is_complete ? 'checked' : '' }}>
+												<label for="todoCheck{{ $j.$k }}"></label>
+											</div>
+											<span class="text">{{ $task->name }}</span>
+										</li>
+									@endif
+								@endforeach
+							</ul>
+						</div>
+						<div class="card-footer">
+							Sucursal: {{ $sucursal->name }}
+						</div>
+					</div>
+
+				@endforeach
 				
-				<div class="card">
+				{{-- <div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Title</h3>
 						<div class="card-tools">
@@ -110,12 +130,10 @@
 					<div class="card-body">
 						Start creating your amazing application!
 					</div>
-					<!-- /.card-body -->
 					<div class="card-footer">
 						Footer
 					</div>
-					<!-- /.card-footer-->
-				</div>
+				</div> --}}
 
 			</section>
 			

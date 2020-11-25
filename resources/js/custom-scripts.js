@@ -120,3 +120,47 @@ $('#calendar').datetimepicker({
 
 //Bootstrap Duallistbox
 $('.duallistbox').bootstrapDualListbox();
+
+//TodoList
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Select all checkboxes with the name 'settings' using querySelectorAll.
+    var checkboxes = document.querySelectorAll("input[type=checkbox][name=task_id]");
+    var state = 0;
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                this.parentElement.parentElement.classList.add("done");
+                state = 1;
+            } else {
+                this.parentElement.parentElement.classList.remove("done");
+                state = 0;
+            }
+
+            var attrs = {
+                'task_id' : this.value,
+                'is_complete' : state
+            }
+        
+            const ops = {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: JSON.stringify(attrs) ,
+                url: '/todolists/update'
+            };
+    
+            axios(ops).then(function (response) {
+               /*  let content = createHtmlContent( response );
+                currentDiv.innerHTML = '';
+                currentDiv.append(content); */
+            })
+    
+            .catch(function (error) {
+                console.log(error);
+            })
+        })
+    })
+})

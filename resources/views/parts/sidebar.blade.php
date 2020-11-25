@@ -74,7 +74,7 @@
                 <li class="nav-item has-treeview {{-- menu-open --}}">
                     <a href="{{ url('/todos') }}" class="nav-link {{-- active --}}">
                         <i class="nav-icon far fa-plus-square"></i>
-                        <p>Listas de Tareas <i class="fas fa-angle-left right"></i></p>
+                        <p>Tareas <i class="fas fa-angle-left right"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">

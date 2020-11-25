@@ -63,7 +63,7 @@
                                         <td>
                                             @if ( $todoList->sucursal->isNotEmpty() )
                                                 @foreach ( $todoList->sucursal as $sucursal ) 
-                                                    <span class="badge badge-success">{{ $sucursal->name }}</span>
+                                                    <span class="badge badge-info">{{ $sucursal->name }}</span>
                                                 @endforeach
                                             @endif
                                         </td>

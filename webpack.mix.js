@@ -18,6 +18,7 @@ mix
         'resources/css/ionicons.min.css',
         'resources/css/bootstrap-tagsinput.css',
         'resources/css/bootstrap-select.css',
+        'resources/css/icheck-bootstrap.min.css',
         'resources/css/bootstrap-datetimepicker.css',
         'resources/css/bootstrap-duallistbox.min.css',
         'resources/vendor/datatables-bs4/css/dataTables.bootstrap4.min.css',
@@ -30,6 +31,7 @@ mix
     .scripts([
         'resources/vendor/jquery/jquery.min.js',
         'resources/vendor/moment/moment.js',
+        'resources/js/adminlte.js',
         'resources/vendor/bootstrap/js/bootstrap.bundle.min.js',
         'resources/vendor/bootstrap/js/bootstrap.tagsinput.js',
         'resources/vendor/bootstrap/js/bootstrap-select.js',
