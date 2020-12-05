@@ -121,25 +121,29 @@ $('#calendar').datetimepicker({
 //Bootstrap Duallistbox
 $('.duallistbox').bootstrapDualListbox();
 
-//TodoList
+//TodoList check
 document.addEventListener('DOMContentLoaded', () => {
 
     // Select all checkboxes with the name 'settings' using querySelectorAll.
     var checkboxes = document.querySelectorAll("input[type=checkbox][name=task_id]");
-    var state = 0;
+    var is_complete = 0;
+    var state = '';
     checkboxes.forEach(function(checkbox) {
         checkbox.addEventListener('change', function() {
             if (this.checked) {
                 this.parentElement.parentElement.classList.add("done");
-                state = 1;
+                is_complete = 1;
+                state = 'Completada';
             } else {
                 this.parentElement.parentElement.classList.remove("done");
-                state = 0;
+                is_complete = 0;
+                state = 'Incompleta';
             }
 
             var attrs = {
                 'task_id' : this.value,
-                'is_complete' : state
+                'state' : state,
+                'is_complete' : is_complete
             }
         
             const ops = {
@@ -163,4 +167,67 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
     })
+})
+
+//TodoList state
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Select all cta with the name 'settings' using querySelectorAll.
+    var ctas = document.querySelectorAll(".todo-state");
+    var state = '';
+    var is_complete = 0;
+    ctas.forEach(function(cta) {
+        cta.addEventListener('click', function() {
+
+            var process = 'process' + this.getAttribute('data-process');
+            var elem = document.getElementById(process);
+
+            if (this.getAttribute('data-state') == '' || this.getAttribute('data-state') == 'Incompleta') {
+                state = 'En Proceso';
+            } else {
+                state = 'Incompleta';
+            }
+
+            this.setAttribute('data-state', state);
+
+            var attrs = {
+                'task_id' : this.getAttribute('data-id'),
+                'state' : state,
+                'is_complete' : is_complete
+            }
+        
+            const ops = {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: JSON.stringify(attrs) ,
+                url: '/todolists/update'
+            };
+    
+            axios(ops).then(function (response) {
+                
+                if ( response.data.state == 'En Proceso') {
+                    elem.classList.add("inline-block");
+                    elem.classList.remove("d-none");
+                } else {
+                    elem.classList.add("d-none");
+                    elem.classList.remove("inline-block");
+                }
+            })
+    
+            .catch(function (error) {
+                console.log(error);
+            })
+        })
+    })
+})
+
+// jQuery UI sortable for the todo list
+$('.todo-list').sortable({
+    placeholder         : 'sort-highlight',
+    handle              : '.handle',
+    forcePlaceholderSize: true,
+    zIndex              : 999999
 })

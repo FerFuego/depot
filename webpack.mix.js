@@ -30,6 +30,7 @@ mix
 
     .scripts([
         'resources/vendor/jquery/jquery.min.js',
+        'resources/vendor/jquery-ui/jquery-ui.min.js',
         'resources/vendor/moment/moment.js',
         'resources/js/adminlte.js',
         'resources/vendor/bootstrap/js/bootstrap.bundle.min.js',

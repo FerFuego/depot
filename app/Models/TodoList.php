@@ -15,6 +15,7 @@ class TodoList extends Model
         'user_id',
         'name',
         'description',
+        'state',
         'is_complete'
     ];
 

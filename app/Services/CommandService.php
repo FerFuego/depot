@@ -23,6 +23,7 @@ class CommandService {
                 $todolist = TodoList::create([
                     'name' => $task->title,
                     'description' => $task->description,
+                    'state' => 'Incompleta',
                     'is_complete' => 0
                 ]);
                 

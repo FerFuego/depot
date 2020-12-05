@@ -74,9 +74,9 @@ class TodoListController extends Controller
     public function update(Request $request, TodoList $todoList)
     {
         $todoList = TodoList::find($request->task_id);
-        $todoList->fill($request->only('is_complete'))->update();
+        $todoList->fill($request->only('state', 'is_complete'))->update();
         
-        return response()->json(['success'=> 'work']); 
+        return response()->json(['success'=> 'updated']); 
     }
 
     /**
