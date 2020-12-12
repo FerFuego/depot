@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TodoList;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
-class TodoListController extends Controller
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,10 @@ class TodoListController extends Controller
      */
     public function index()
     {
-        $todoLists = TodoList::all();
+        $notifications = Notification::orderBy('id', 'asc')->get();
 
-        return view('todolists.index', [
-            'todoLists' => $todoLists
+        return view('notifications/index', [
+            'notifications' => $notifications
         ]);
     }
 
@@ -45,10 +45,10 @@ class TodoListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TodoList  $todoList
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function show(TodoList $todoList)
+    public function show(Notification $notification)
     {
         //
     }
@@ -56,10 +56,10 @@ class TodoListController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TodoList  $todoList
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function edit(TodoList $todoList)
+    public function edit(Notification $notification)
     {
         //
     }
@@ -68,24 +68,24 @@ class TodoListController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TodoList  $todoList
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TodoList $todoList)
+    public function update(Request $request, Notification $notification)
     {
-        $todoList = TodoList::find($request->task_id);
-        $todoList->fill($request->only('state', 'is_complete'))->update();
-        
-        return response()->json( $request->all() ); 
+        $notification = Notification::find($request->notification_id);
+        $notification->fill($request->only('state'))->update();
+
+        return response()->json( 'work!' );  
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TodoList  $todoList
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TodoList $todoList)
+    public function destroy(Notification $notification)
     {
         //
     }

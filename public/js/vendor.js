@@ -8536,10 +8536,9 @@ $('#deleteTodoModal').on('show.bs.modal', function (event) {
 $("#roles_permissions").tagsinput('items')
 
 $(document).ready(function () {
+    
     var permissions_box = $('#permissions_box')
     var permissions_checkbox_list = $('#permissions_checkbox_list')
-    
-    //permissions_box.hide()
     
     $('#role').on('change', function () {
         var role = $(this).find(':selected')
@@ -8564,6 +8563,43 @@ $(document).ready(function () {
                     '<label for="'+ element.slug +'" class="custom-control-label">' + element.name + '</label>' +
                     '</div>'
                 )
+            })
+        })
+    })
+});
+
+// Mark as readW
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Select all cta with the name 'settings' using querySelectorAll.
+    var ctas = document.querySelectorAll(".js-read");
+
+    ctas.forEach(function(cta) {
+        cta.addEventListener('click', function() {
+
+            var id = $(this).attr('data-notificationid')
+
+            var attrs = {
+                'notification_id' : id,
+                'state' : 1
+            }
+
+            const ops = {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: JSON.stringify(attrs) ,
+                url: '/notifications/' + id
+            };
+
+            axios(ops).then(function (response) {
+                $('#js-read-'+id).html('Leida');
+            })
+
+            .catch(function (error) {
+                console.log(error);
             })
         })
     })

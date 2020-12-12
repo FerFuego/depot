@@ -70,33 +70,39 @@
                             <p>Ventas</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/notifications') }}" class="nav-link">
+                            <i class="nav-icon fas fa-bell"></i>
+                            <p>Notificaciones</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview {{-- menu-open --}}">
+                        <a href="{{ url('/todos') }}" class="nav-link {{-- active --}}">
+                            <i class="nav-icon far fa-plus-square"></i>
+                            <p>Tareas <i class="fas fa-angle-left right"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ url('/todos') }}" class="nav-link {{-- active --}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Ver las Listas de Tareas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/tasks') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Ver todas las Tareas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/todolists') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Ver Tareas Realizadas</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 @endcanany
-                <li class="nav-item has-treeview {{-- menu-open --}}">
-                    <a href="{{ url('/todos') }}" class="nav-link {{-- active --}}">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p>Tareas <i class="fas fa-angle-left right"></i></p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ url('/todos') }}" class="nav-link {{-- active --}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ver las Listas de Tareas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/tasks') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ver todas las Tareas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/todolists') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ver Tareas Realizadas</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                {{--  <li class="nav-header">MISCELLANEOUS</li>
                 <li class="nav-item">
                     <a href="https://adminlte.io/docs/3.0" class="nav-link">

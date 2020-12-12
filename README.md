@@ -1,4 +1,4 @@
-# depot
+# Depot Sitemap
 Depot Software Laravel
 
 # Usuario (users)
@@ -27,3 +27,6 @@ Los roles se asignan a los usuarios
 
 # Permisos (permissions)
 Los permisos se asignan a los roles
+
+# Notificaciones (notifications)
+Las notificaciones se relacionan a los usuarios y sucursales
