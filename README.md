@@ -30,3 +30,5 @@ Los permisos se asignan a los roles
 
 # Notificaciones (notifications)
 Las notificaciones se relacionan a los usuarios y sucursales
+
+# Ofertas (offers)
