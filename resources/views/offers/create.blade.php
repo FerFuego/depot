@@ -76,8 +76,8 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="file">Archivo</label>
-                    <input type="file" name="file" id="file" class="form-control" placeholder="Archivo" value="{{ old('file') }}" required>
+                    <label for="file">Imagen</label>
+                    <input type="file" name="file" id="file" class="form-control" placeholder="Imagen" value="{{ old('file') }}" required>
                     @error('file')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

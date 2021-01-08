@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\Sucursal;
 use Illuminate\Http\Request;
+use App\Http\Requests\OfferRequest;
 
 class OfferController extends Controller
 {
@@ -42,9 +43,13 @@ class OfferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OfferRequest $request)
     {
-        //
+        dd( $request->all());
+        /* 'title',
+        'details',
+        'days',
+        'file' */
     }
 
     /**

@@ -24,15 +24,15 @@ class TaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'string', 'max:255'],
+            'title' => ['string','required','max:100'],
         ];
     }
 
     public function messages()
     {
         return [
-            'title.required' => 'La tarea no puede estar vacia',
             'title.string' => 'La tarea debe ser solo texto',
+            'title.required' => 'La tarea no puede estar vacia',
             'title.max' => 'La tarea supera el maximo permitido, utilice el campo descripcion para el detalle',
         ];
     }
