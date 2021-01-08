@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\Sucursal;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
@@ -14,7 +15,11 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return view('offers.index');
+        $offers = Offer::orderBy('id', 'desc')->get();
+
+        return view('offers.index',[
+            'offers' => $offers
+        ]);
     }
 
     /**
@@ -24,7 +29,11 @@ class OfferController extends Controller
      */
     public function create()
     {
-        //
+        $sucursals = Sucursal::orderBy('id', 'asc')->get();
+
+        return view('offers.create',[
+            'sucursals' => $sucursals
+        ]);
     }
 
     /**

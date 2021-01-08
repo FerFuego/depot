@@ -40,41 +40,38 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Direccion</th>
-                                    <th>Telefono</th>
-                                    <th>Email</th>
-                                    <th>Horario</th>
-                                    <th>Gerentes</th>
-                                    <th>Acciones</th>
+                                    <th>Titulo</th>
+                                    <th>Detalle</th>
+                                    <th>Dias</th>
+                                    <th>Archivo</th>
+                                    <th>Sucursal</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Direccion</th>
-                                    <th>Telefono</th>
-                                    <th>Email</th>
-                                    <th>Horario</th>
-                                    <th>Gerentes</th>
-                                    <th>Acciones</th>
+                                    <th>Titulo</th>
+                                    <th>Detalle</th>
+                                    <th>Dias</th>
+                                    <th>Archivo</th>
+                                    <th>Sucursal</th>
+                                    <th>Accion</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                {{-- @foreach($offers as $offer)
+                                @foreach($offers as $offer)
                                     <tr>
                                         <td>{{ $offer->id }}</td>
-                                        <td>{{ $offer->name }}</td>
-                                        <td>{{ $offer->address }}</td>
-                                        <td>{{ $offer->phone }}</td>
-                                        <td>{{ $offer->email }}</td>
-                                        <td>{{ $offer->schedule }}</td>
+                                        <td>{{ $offer->title }}</td>
+                                        <td>{{ $offer->details }}</td>
+                                        <td>{{ $offer->days }}</td>
+                                        <td>{{ $offer->file }}</td>
                                         <td>
-                                            @if ( $offer->users->isNotEmpty() )
-                                                @foreach ( $offer->users as $user ) 
+                                            @if ( $offer->sucursals->isNotEmpty() )
+                                                @foreach ( $offer->sucursals as $sucursal ) 
                                                     <span class="badge badge-success">
-                                                        {{ $user->name }} 
+                                                        {{ $sucursal->name }} 
                                                     </span>
                                                 @endforeach
                                             @endif
@@ -91,7 +88,7 @@
                                             </a>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
