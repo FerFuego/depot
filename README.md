@@ -32,3 +32,7 @@ Los permisos se asignan a los roles
 Las notificaciones se relacionan a los usuarios y sucursales
 
 # Ofertas (offers)
+Las Ofertas se relacionan a las sucursales.
+
+# RRHH (rrhhs)
+Las RRHH se relacionan a las sucursales.
