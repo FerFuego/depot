@@ -24,6 +24,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('todolists', 'TodoListController');
     Route::resource('notifications', 'NotificationController');
     Route::resource('offers', 'OfferController');
+    Route::get('download/{file}', function ($file) {
+        return Response::download( public_path('uploads/') . $file);
+    });
 });
 
 Auth::routes();

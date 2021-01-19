@@ -41,10 +41,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Titulo</th>
-                                    <th>Detalle</th>
-                                    <th>Dias</th>
-                                    <th>Archivo</th>
                                     <th>Sucursal</th>
+                                    <th>Archivo</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -52,10 +50,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Titulo</th>
-                                    <th>Detalle</th>
-                                    <th>Dias</th>
-                                    <th>Archivo</th>
                                     <th>Sucursal</th>
+                                    <th>Archivo</th>
                                     <th>Accion</th>
                                 </tr>
                             </tfoot>
@@ -64,11 +60,8 @@
                                     <tr>
                                         <td>{{ $offer->id }}</td>
                                         <td>{{ $offer->title }}</td>
-                                        <td>{{ $offer->details }}</td>
-                                        <td>{{ $offer->days }}</td>
-                                        <td>{{ $offer->file }}</td>
                                         <td>
-                                            @if ( $offer->sucursals->isNotEmpty() )
+                                            @if ( $offer->sucursals )
                                                 @foreach ( $offer->sucursals as $sucursal ) 
                                                     <span class="badge badge-success">
                                                         {{ $sucursal->name }} 
@@ -77,13 +70,18 @@
                                             @endif
                                         </td>
                                         <td>
+                                            <a href="{{ url('/download/' . $offer->file ) }}" title="Descargar">
+                                                <i class="fas fa-image fa-2x"></i>
+                                            </a>
+                                        </td>
+                                        <td>
                                             <a class="btn btn-primary btn-sm" href="{{ url('/offers/'. $offer->id ) }}">
                                                 <i class="fas fa-folder"></i> Ver
                                             </a>
                                             <a class="btn btn-info btn-sm" href="{{ url('/offers/'. $offer->id .'/edit') }}">
                                                 <i class="fas fa-pencil-alt"></i> Editar
                                             </a>
-                                            <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#deleteOffersModal" data-offerid="{{ $offer->id }}">
+                                            <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#deleteOfferModal" data-offerid="{{ $offer->id }}">
                                                 <i class="fas fa-trash"></i> Eliminar
                                             </a>
                                         </td>

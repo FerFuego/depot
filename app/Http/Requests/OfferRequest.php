@@ -25,8 +25,8 @@ class OfferRequest extends FormRequest
     {
         return [
             'title' => ['string','required','max:100'],
-            'details' => ['string','required','max:200'],
-            //'file' => ['image','mimes:jpeg,png,PNG,bmp,jpg,gif,svg','max:10240']
+            'details' => ['nullable','string','max:500'],
+            'file'  => ['nullable','image','mimes:jpeg,png,PNG,bmp,jpg,gif,svg','max:10240']
         ];
     }
 

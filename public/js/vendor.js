@@ -8533,6 +8533,13 @@ $('#deleteTodoModal').on('show.bs.modal', function (event) {
     modal.find('form').attr('action','/todos/'+ todo_id)
 })
 
+$('#deleteOfferModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var offer_id = button.data('offerid')
+    var modal = $(this)
+    modal.find('form').attr('action','/offers/'+ offer_id)
+})
+
 $("#roles_permissions").tagsinput('items')
 
 $(document).ready(function () {

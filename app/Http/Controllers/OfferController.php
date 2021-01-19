@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\Sucursal;
 use Illuminate\Http\Request;
+use App\Services\OfferService;
 use App\Http\Requests\OfferRequest;
 
 class OfferController extends Controller
@@ -43,13 +44,22 @@ class OfferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OfferRequest $request)
+    public function store(OfferRequest $request, OfferService $service)
     {
-        dd( $request->all());
-        /* 'title',
-        'details',
-        'days',
-        'file' */
+
+        $params = $request->all();
+
+        if ( $request->file ) {
+            $params['file'] = $service->uploadFile($request);
+        }
+
+        $offer = Offer::create($params);
+
+        $service->addSucursal($offer, $request);
+
+        session()->flash('success', 'Oferta Creada Correctamente!');
+
+        return redirect('/offers');
     }
 
     /**
@@ -60,7 +70,9 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        //
+        return view('offers.show', [
+            'offer' => $offer
+        ]);
     }
 
     /**
@@ -71,7 +83,12 @@ class OfferController extends Controller
      */
     public function edit(Offer $offer)
     {
-        //
+        $sucursals = Sucursal::orderBy('id', 'asc')->get();
+
+        return view('offers.edit', [
+            'offer' => $offer,
+            'sucursals' => $sucursals
+        ]);
     }
 
     /**
@@ -81,9 +98,21 @@ class OfferController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Offer $offer)
+    public function update(OfferRequest $request, Offer $offer, OfferService $service)
     {
-        //
+        $params = $request->all();
+
+        if ( $request->file ) {
+            $params['file'] = $service->uploadFile($request);
+        }
+
+        $offer->fill($params)->update();
+
+        $service->updateSucursal($offer, $request);
+
+        session()->flash('success', 'Oferta Actualizada Correctamente!');
+
+        return redirect('/offers');
     }
 
     /**
@@ -94,6 +123,11 @@ class OfferController extends Controller
      */
     public function destroy(Offer $offer)
     {
-        //
+        $offer->sucursals()->detach();
+        $offer->delete();
+
+        session()->flash('success','Oferta Eliminada Correctamente!');
+
+        return redirect('/offers');
     }
 }

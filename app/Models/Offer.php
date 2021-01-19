@@ -12,7 +12,15 @@ class Offer extends Model
     protected $fillable = [
         'title',
         'details',
-        'days',
         'file'
     ];
+
+    protected $with = ['sucursals'];
+
+    /**
+     * Relationship
+     */
+    public function sucursals () {
+        return $this->belongsToMany(Sucursal::class, 'sucursals_offers');
+    }
 }
