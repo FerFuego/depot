@@ -80,9 +80,9 @@
 					@enderror
                 </div>
                 <div class="form-group">
-					<label for="gerents">Gerente</label>
+					<label for="gerents">Asignado</label>
 					<select name="gerents[]" id="select_gerent" class="form-control selectpicker" multiple data-live-search="true">
-						<option>Seleccione Gerente</option>
+						<option>Seleccione Asignado</option>
 						@foreach ( $users as $user )
 							<option value="{{ $user->id }}">{{ $user->name }}</option>
 						@endforeach

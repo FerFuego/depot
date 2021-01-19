@@ -81,9 +81,9 @@
 					@enderror
                 </div>
                 <div class="form-group">
-					<label for="gerents">Gerentes</label>
+					<label for="gerents">Asignado</label>
 					<select name="gerents[]" id="select_gerent" class="form-control selectpicker" multiple data-live-search="true">
-						<option>Seleccione Gerente</option>
+						<option>Seleccione Asignado</option>
 						@foreach ( $users as $user )
 							<option value="{{ $user->id }}" {{ in_array( $user->id, $sucursal->users->pluck('id')->toArray() ) ? 'selected' : '' }}>{{ $user->name }}</option>
 						@endforeach

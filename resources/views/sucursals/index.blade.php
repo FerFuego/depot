@@ -45,7 +45,7 @@
                                     <th>Telefono</th>
                                     <th>Email</th>
                                     <th>Horario</th>
-                                    <th>Gerentes</th>
+                                    <th>Asignados</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -57,7 +57,7 @@
                                     <th>Telefono</th>
                                     <th>Email</th>
                                     <th>Horario</th>
-                                    <th>Gerentes</th>
+                                    <th>Asignados</th>
                                     <th>Acciones</th>
                                 </tr>
                             </tfoot>

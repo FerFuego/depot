@@ -41,6 +41,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Fecha / Hora</th>
+                                    <th>Turno</th>
                                     <th>Sucursal</th>
                                     <th>Importe</th>
                                     <th>Clientes</th>
@@ -51,6 +52,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Fecha / Hora</th>
+                                    <th>Turno</th>
                                     <th>Sucursal</th>
                                     <th>Importe</th>
                                     <th>Clientes</th>
@@ -62,6 +64,7 @@
                                     <tr>
                                         <td>{{ $sale->id }}</td>
                                         <td>{{ $sale->created_at->format('j/m/Y - H:i \h\s') }}</td>
+                                        <td>{{ $sale->turn }}</td>
                                         <td>
                                             @if ( $sale->sucursal->isNotEmpty() )
                                                 @foreach ( $sale->sucursal as $sucursal ) 

@@ -43,6 +43,16 @@
                   </select>
                 </div>
                 <div class="form-group">
+                  <label for="turn">Turno</label>
+                  <select name="turn" class="form-control">
+                    <option>Seleccione Turno</option>
+                    <option value="13hs">13hs</option>
+                    <option value="17hs">17hs</option>
+                    <option value="22hs">22hs</option>
+                    <option value="23hs">23hs</option>
+                  </select>
+                </div>
+                <div class="form-group">
                     <label for="amount">Importe parcial en turno</label>
                     <input type="text" name="amount" id="amount" class="form-control" placeholder="Importe" value="{{ old('amount') }}" required>
                     @error('amount')

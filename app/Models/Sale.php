@@ -11,7 +11,8 @@ class Sale extends Model
 
     protected $fillable = [
         'amount',
-        'clients'
+        'clients',
+        'turn'
     ];
 
     public function sucursal () {
