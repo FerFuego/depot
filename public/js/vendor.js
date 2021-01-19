@@ -8540,6 +8540,13 @@ $('#deleteOfferModal').on('show.bs.modal', function (event) {
     modal.find('form').attr('action','/offers/'+ offer_id)
 })
 
+$('#deleteRRhhModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var rrhh_id = button.data('rrhhid')
+    var modal = $(this)
+    modal.find('form').attr('action','/rrhhs/'+ rrhh_id)
+})
+
 $("#roles_permissions").tagsinput('items')
 
 $(document).ready(function () {

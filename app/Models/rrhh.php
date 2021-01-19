@@ -5,19 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rrhh extends Model
+class RRhh extends Model
 {
     use HasFactory;
+
+    protected $table = 'rrhhs';
 
     protected $fillable = [
         'title',
         'details'
     ];
 
+    protected $with = ['sucursals'];
+
     /**
      * Relationship
      */
-    public function sucursal () {
-        return $this->belongsToMany(Sucursal::class, 'sales_sucursals');
+    public function sucursals () {
+        return $this->belongsToMany(Sucursal::class, 'sucursals_rrhhs', 'rrhh_id', 'sucursal_id');
     }
 }

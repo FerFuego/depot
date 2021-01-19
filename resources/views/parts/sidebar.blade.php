@@ -108,6 +108,12 @@
                             <p>Ofertas</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/rrhhs') }}" class="nav-link">
+                            <i class="nav-icon fas fa-user-plus"></i>
+                            <p>RRHH</p>
+                        </a>
+                    </li>
                 @endcanany
                {{--  <li class="nav-header">MISCELLANEOUS</li>
                 <li class="nav-item">
