@@ -15,6 +15,8 @@ class Sale extends Model
         'turn'
     ];
 
+    //protected $with = ['sucursal'];
+
     public function sucursal () {
         return $this->belongsToMany(Sucursal::class, 'sales_sucursals');
     }

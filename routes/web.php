@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('download/{file}', function ($file) {
         return Response::download( public_path('uploads/') . $file);
     });
+    Route::post('sales/filter', 'SalesController@filter');
 });
 
 Auth::routes();

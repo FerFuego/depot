@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
+use App\Models\Sucursal;
 use App\Services\SaleService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
@@ -16,9 +18,17 @@ class SalesController extends Controller
     public function index()
     {
         $sales = Sale::orderBy('created_at', 'desc')->get();
+        $sucursals = Sucursal::orderBy('id', 'asc')->get();
+        $days = Sale::select('created_at')
+                    ->orderBy('created_at', 'desc')
+                    ->groupBy(DB::raw('Date(created_at)'))
+                    ->get();
 
         return view('sales.index', [
-            'sales' => $sales
+            'days' => $days,
+            'sales' => $sales,
+            'sucursals' => $sucursals,
+            'request' => []
         ]);
     }
 
@@ -121,4 +131,37 @@ class SalesController extends Controller
 
         return redirect('/sales');
     }
+
+
+    public function filter(Request $request) {
+
+        $sucursals = Sucursal::orderBy('id', 'asc')->get();
+        $days = Sale::select('created_at')
+                    ->orderBy('created_at', 'desc')
+                    ->groupBy(DB::raw('Date(created_at)'))
+                    ->get();
+
+        $query = Sale::query();
+        $query->when( isset($request->turn), function ($q) use ($request){
+            $q->where('turn', $request->turn);
+        });
+        $query->when( isset($request->day), function ($q) use ($request){
+            $q->whereDate('created_at', $request->day);
+        });
+        $query->when( isset($request->sucursal), function ($q) use ($request){
+            $q->join('sales_sucursals', function ($q) use ($request){
+                $q->on('sale_id', '=', 'id');
+                $q->where('sucursal_id', '=', $request->sucursal);
+            });
+        });
+        $query->orderBy('created_at', 'desc');
+        $sales = $query->get();
+
+        return view('sales.index', [
+            'sales' => $sales,
+            'days'  => $days,
+            'sucursals' => $sucursals,
+            'request'   => $request->all()
+        ]);
+    } 
 }
