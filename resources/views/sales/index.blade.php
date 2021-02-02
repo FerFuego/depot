@@ -41,21 +41,21 @@
                             <select name="day" class="form-control">
                                 <option value="">Fecha</option>
                                 @foreach($days as $day)
-                                    <option value="{{ $day->created_at->format('Y/m/j') }}" {{ ( $request['day'] == $day->created_at->format('Y/m/j') ) ? 'selected' : '' }}>{{ $day->created_at->format('j/m/Y') }}</option>
+                                    <option value="{{ $day->created_at->format('Y/m/j') }}" {{ ( isset($request['day']) && $request['day'] == $day->created_at->format('Y/m/j') ) ? 'selected' : '' }}>{{ $day->created_at->format('j/m/Y') }}</option>
                                 @endforeach
                             </select>
                             <select name="sucursal" id="" class="form-control ml-2">
                                 <option value="">Sucursal</option>
                                 @foreach ($sucursals as $sucursal)
-                                    <option value="{{ $sucursal->id }}" {{ ( $request['sucursal'] == $sucursal->id ) ? 'selected' : '' }}>{{ $sucursal->name }}</option>
+                                    <option value="{{ $sucursal->id }}" {{ ( isset($request['sucursal']) && $request['sucursal'] == $sucursal->id ) ? 'selected' : '' }}>{{ $sucursal->name }}</option>
                                 @endforeach
                             </select>
                             <select name="turn" id="" class="form-control ml-2">
                                 <option value="">Turno</option>
-                                <option value="13hs" {{ ( $request['turn'] == '13hs' ) ? 'selected' : '' }}>13hs</option>
-                                <option value="17hs" {{ ( $request['turn'] == '17hs' ) ? 'selected' : '' }}>17hs</option>
-                                <option value="22hs" {{ ( $request['turn'] == '22hs' ) ? 'selected' : '' }}>22hs</option>
-                                <option value="23hs" {{ ( $request['turn'] == '23hs' ) ? 'selected' : '' }}>23hs</option>
+                                <option value="13hs" {{ ( isset($request['turn']) && $request['turn'] == '13hs' ) ? 'selected' : '' }}>13hs</option>
+                                <option value="17hs" {{ ( isset($request['turn']) && $request['turn'] == '17hs' ) ? 'selected' : '' }}>17hs</option>
+                                <option value="22hs" {{ ( isset($request['turn']) && $request['turn'] == '22hs' ) ? 'selected' : '' }}>22hs</option>
+                                <option value="23hs" {{ ( isset($request['turn']) && $request['turn'] == '23hs' ) ? 'selected' : '' }}>23hs</option>
                             </select>
                             <input type="submit" class="btn btn-info ml-2" value="Filtrar">
                         </form>
@@ -100,9 +100,9 @@
                                         <td>${{ $sale->amount }}</td>
                                         <td>{{ $sale->clients }}</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="{{ url('/sales/'. $sale->id ) }}">
+                                            {{-- <a class="btn btn-primary btn-sm" href="{{ url('/sales/'. $sale->id ) }}">
                                                 <i class="fas fa-folder"></i> Ver
-                                            </a>
+                                            </a> --}}
                                             <a class="btn btn-info btn-sm" href="{{ url('/sales/'. $sale->id .'/edit') }}">
                                                 <i class="fas fa-pencil-alt"></i> Editar
                                             </a>
@@ -114,9 +114,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-                    <div class="col-6 mt-2 mb-2 pl-0">
-
                     </div>
                 </div>
             </div>
