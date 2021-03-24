@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Sale;
 use App\Models\Sucursal;
 use App\Services\SaleService;
@@ -15,10 +16,11 @@ class SalesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( SaleService $service )
     {
         $sales = Sale::orderBy('created_at', 'desc')->get();
         $sucursals = Sucursal::orderBy('id', 'asc')->get();
+        $salesToday = $service->calcDailySales($sales);
         $days = Sale::select('created_at')
                     ->orderBy('created_at', 'desc')
                     ->groupBy(DB::raw('Date(created_at)'))
@@ -28,6 +30,7 @@ class SalesController extends Controller
             'days' => $days,
             'sales' => $sales,
             'sucursals' => $sucursals,
+            'salesToday' => $salesToday,
             'request' => []
         ]);
     }
@@ -133,7 +136,7 @@ class SalesController extends Controller
     }
 
 
-    public function filter(Request $request) {
+    public function filter(Request $request, SaleService $service) {
 
         $sucursals = Sucursal::orderBy('id', 'asc')->get();
         $days = Sale::select('created_at')
@@ -157,10 +160,13 @@ class SalesController extends Controller
         $query->orderBy('created_at', 'desc');
         $sales = $query->get();
 
+        $salesToday = $service->calcDailySales($sales);
+
         return view('sales.index', [
             'sales' => $sales,
             'days'  => $days,
             'sucursals' => $sucursals,
+            'salesToday' => $salesToday,
             'request'   => $request->all()
         ]);
     } 

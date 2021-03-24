@@ -36,7 +36,7 @@
               @csrf()
                 <div class="form-group">
                   <label for="sucursal">Sucursal</label>
-                  <select name="sucursal" id="select_sucursal" class="form-control selectpicker" multiple data-live-search="true">
+                  <select name="sucursal" id="select_sucursal" class="form-control selectpicker" data-live-search="true">
                     <option>Seleccione Sucursal</option>
                     @foreach ( $sucursals as $sucursal )
                       <option value="{{ $sucursal->id }}" {{ in_array( $sucursal->id, $sale->sucursal->pluck('id')->toArray() ) ? 'selected' : '' }}>{{ $sucursal->name }}</option>

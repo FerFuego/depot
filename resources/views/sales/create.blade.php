@@ -35,7 +35,7 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                   <label for="sucursal">Sucursal</label>
-                  <select name="sucursal" id="select_sucursal" class="form-control selectpicker" multiple data-live-search="true">
+                  <select name="sucursal" id="select_sucursal" class="form-control selectpicker" data-live-search="true">
                     <option>Seleccione Sucursal</option>
                     @foreach ( $sucursals as $sucursal )
                       <option value="{{ $sucursal->id }}" @if ($loop->first) selected @endif>{{ $sucursal->name }}</option>

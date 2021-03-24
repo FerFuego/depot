@@ -27,26 +27,26 @@
 				<div class="col-lg-3 col-6">
 					<div class="small-box bg-info">
 						<div class="inner">
-							<h3>150</h3>
-							<p>New Orders</p>
+							<h3>{{ $salesToday['clients'] }}</h3>
+							<p>Total Clientes</p>
 						</div>
 						<div class="icon">
-							<i class="ion ion-bag"></i>
+							<i class="ion ion-ios-people"></i>
 						</div>
-						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+						<a href="/sales" class="small-box-footer">Mas Info <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				
 				<div class="col-lg-3 col-6">
 					<div class="small-box bg-success">
-						<div class="inner">
-							<h3>53<sup style="font-size: 20px">%</sup></h3>
-							<p>Bounce Rate</p>
+						<div class="inner">                        
+							<h3><sup style="font-size: 20px">$</sup>{{ $salesToday['sales'] }}</h3>
+							<p>Total Ventas</p>
 						</div>
 						<div class="icon">
 							<i class="ion ion-stats-bars"></i>
 						</div>
-						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+						<a href="/sales" class="small-box-footer">Mas Info <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				
@@ -156,7 +156,7 @@
 							{{ csrf_field() }}
 							<div class="form-group">
 								<label for="sucursal">Sucursal</label>
-								<select name="sucursal" id="select_sucursal" class="form-control selectpicker" multiple data-live-search="true">
+								<select name="sucursal" id="select_sucursal" class="form-control selectpicker" data-live-search="true">
 									<option>Seleccione Sucursal</option>
 									@foreach ( $sucursals as $sucursal )
 										<option value="{{ $sucursal->id }}" @if ($loop->first) selected @endif>{{ $sucursal->name }}</option>

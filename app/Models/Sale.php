@@ -18,7 +18,7 @@ class Sale extends Model
     //protected $with = ['sucursal'];
 
     public function sucursal () {
-        return $this->belongsToMany(Sucursal::class, 'sales_sucursals');
+        return $this->belongsToMany(Sucursal::class, 'sales_sucursals')->withPivot(['sucursal_id','sale_id']);
     }
 
     public function user() {

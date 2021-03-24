@@ -119,15 +119,11 @@ class UsersController extends Controller
         }
 
         $user->fill( $params )->update();
-
         $service->updateRoles($user, $request);
-
         $service->updatePermissions($user, $request);
 
         $roles = Role::all();
-
         $userRole = $user->roles->first();
-        
         $allPermissions = $userRole->permissions;
 
         session()->flash('success','Usuario Actualizado Correctamente!');

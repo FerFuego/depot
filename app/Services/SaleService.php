@@ -1,11 +1,27 @@
 <?php
-
 namespace App\Services;
 
+use Carbon\Carbon;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 
 class SaleService {
+
+    public function calcDailySales ( $sales ) {
+        $total['sales'] = 0;
+        $total['clients'] = 0;
+
+        if ($sales) :
+            foreach($sales as $key => $sale) :
+                if ( $sale->created_at >= Carbon::today() ) :
+                    $total['sales'] += $sale->amount;
+                    $total['clients'] += $sale->clients;
+                endif;
+            endforeach;
+        endif;
+
+        return $total;
+    }
 
     public function addSucursal ( $sale, $request ) {
         $sale->sucursal()->attach( $request->sucursal );
