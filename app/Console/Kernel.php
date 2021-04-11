@@ -24,7 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('diary:tasks')->daily();
+        $schedule->command('diary:tasks')
+                    ->weekdays()
+                    ->dailyAt('5:00');
     }
 
     /**
