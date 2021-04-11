@@ -105,7 +105,7 @@
                     <li class="nav-item">
                         <a href="{{ url('/offers') }}" class="nav-link">
                             <i class="nav-icon fas fa-percent"></i>
-                            <p>Ofertas</p>
+                            <p>Banners</p>
                         </a>
                     </li>
                     <li class="nav-item">
