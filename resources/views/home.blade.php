@@ -123,7 +123,7 @@
 
 				@endforeach
 				
-				<div class="card">
+				{{-- <div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Reservas</h3>
 						<div class="card-tools">
@@ -134,15 +134,6 @@
 					<div class="card-body">
 						<form action="{{ route('bookings.store') }}" method="POST">
 							{{ csrf_field() }}
-							<div class="form-group">
-								<label for="sucursal">Sucursal</label>
-								<select name="sucursal" id="select_sucursal" class="form-control selectpicker" data-live-search="true">
-									<option>Seleccione Sucursal</option>
-									@foreach ( $sucursals as $sucursal )
-										<option value="{{ $sucursal->id }}" @if ($loop->first) selected @endif>{{ $sucursal->name }}</option>
-									@endforeach
-								</select>
-							</div>
 							<div class="form-group">
 								<label for="supplier">Proveedor</label>
 								<input type="text" name="supplier" id="supplier" class="form-control" required>
@@ -161,7 +152,7 @@
 					<div class="card-footer">
 						Turnero Proveedor
 					</div>
-				</div>
+				</div> --}}
 
 			</section>
 			

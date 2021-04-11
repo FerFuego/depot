@@ -34,7 +34,6 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('offers.create') }}" class="btn btn-info mb-2"><i class="fas fa-plus"></i> Agregar Nueva Reserva</a>
                     
                     {!! Form::open(['url' => 'bookings/filter', 'method' => 'post', 'class' => 'form form-inline mb-3 float-right']) !!}
                         {!! Form::token() !!}

@@ -18,13 +18,13 @@ class BookingService {
         $date = Carbon::create($request->day);
         
         if($date->format('l') == 'Sunday' || $date->format('l') == 'Saturday')
-            return 'weekend';
+            return 'Fin de Semana no hay deposito';
 
         if ($date->format('Y-m-d') == $today) {
             return 'today';
         } else {
             if ($date->lte($today))
-                return 'history';
+                return 'La fecha seleccionada ya quedo en la historia';
         }
 
         return 'good';
@@ -36,8 +36,7 @@ class BookingService {
      */
     public function checkTime () {
         $time_open = env('TIME_OPEN', '09:00:00');
-        //$time_close = env('TIME_CLOSE', '18:00:00');
-        $time_close = '23:00:00';
+        $time_close = env('TIME_CLOSE', '18:00:00');
         $now = Carbon::now();
         $control_start = Carbon::parse($time_open);
         $control_end = Carbon::parse($time_close);

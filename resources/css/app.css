@@ -44,3 +44,15 @@ body::before {
   box-shadow: none;
   width: 80%;
 }
+
+.alert {
+  position: absolute !important;
+  top: 80px !important;
+  right: 15px !important;
+  z-index: 3 !important;
+  width: auto;
+  min-width: 150px;
+}
+.alert strong {
+  margin-right: 10px;
+}

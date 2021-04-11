@@ -33,16 +33,6 @@ class BookingController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -53,12 +43,20 @@ class BookingController extends Controller
         // chek if is a valid date
         $status = $service->checkDate($request);
 
-        if ($status !== 'good' && $status !== 'today') 
-            return $status;
+        if ($status !== 'good' && $status !== 'today') {
+            session()->flash('error', $status);
+            return view('suppliers', [
+                'result' => ''
+            ]);
+        }
 
         // check if there are availble places
-        if (!$service->checkPlaces($request)) 
-            return 'No hay lugares disponibles en este dia';
+        if (!$service->checkPlaces($request)) {
+            session()->flash('error', 'No hay lugares disponibles en este dia');
+            return view('suppliers', [
+                'result' => ''
+            ]);
+        }
        
         // get all times of the request day
         $bookings = $service->getLastBooking($request);
@@ -70,8 +68,12 @@ class BookingController extends Controller
 
             $current_time = $service->checkTime();
 
-            if (!$current_time) 
-                return 'false';
+            if (!$current_time) {
+                session()->flash('error', 'Horario no disponible');
+                return view('suppliers', [
+                    'result' => ''
+                ]);
+            }
 
             //agrega 15 min si el ultimo registro ya paso o es igual a ahora
             if ( !$bookings || $current_time->lte(Carbon::parse(@$bookings[0]->end)) ) {
@@ -108,52 +110,11 @@ class BookingController extends Controller
         // insert empty time
         $service->storeEmptyTime($request);
 
-        return $booking;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Booking $booking)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Booking $booking)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Booking $booking)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Booking $booking)
-    {
-        //
+        session()->flash('success', 'Reserva cargada correctamente');
+        
+        return view('suppliers', [
+            'result' => $booking
+        ]);
     }
 
     public function filter(Request $request) 
