@@ -13,24 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('users', 'UsersController')->middleware('role:superadmin,admin');
-    Route::resource('roles', 'RolesController')->middleware('can:isSuper');
-    Route::resource('sucursals', 'SucursalController')->middleware('role:superadmin,admin');
-    Route::resource('sales', 'SalesController');
-    Route::resource('tasks', 'TaskController');
-    Route::resource('todos', 'TodoController');
-    Route::resource('todolists', 'TodoListController');
-    Route::resource('notifications', 'NotificationController');
-    Route::resource('offers', 'OfferController');
-    Route::resource('rrhhs', 'RRhhController');
-    Route::get('download/{file}', function ($file) {
-        return Response::download( public_path('uploads/') . $file);
-    });
-    Route::post('sales/filter', 'SalesController@filter');
-});
-
 Auth::routes();
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/', 'Auth\LoginController@login');
@@ -43,6 +25,26 @@ Route::post('signup', 'Auth\RegisterController@register');
 // Password Reset Routes...
 Route::get('forgot', 'Auth\ForgotPasswordController@showLinkRequestForm');
 Route::get('forgot/{token}', 'Auth\ResetPasswordController@showResetForm');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('users', 'UsersController')->middleware('role:superadmin,admin');
+    Route::resource('roles', 'RolesController')->middleware('can:isSuper');
+    Route::resource('sucursals', 'SucursalController')->middleware('role:superadmin,admin');
+    Route::resource('sales', 'SalesController');
+    Route::resource('tasks', 'TaskController');
+    Route::resource('todos', 'TodoController');
+    Route::resource('todolists', 'TodoListController');
+    Route::resource('notifications', 'NotificationController');
+    Route::resource('offers', 'OfferController');
+    Route::resource('rrhhs', 'RRhhController');
+    Route::resource('bookings', 'BookingController');
+    Route::get('download/{file}', function ($file) {
+        return Response::download( public_path('uploads/') . $file);
+    });
+    Route::post('sales/filter', 'SalesController@filter');
+    Route::post('bookings/filter', 'BookingController@filter');
+});
 
 if (Auth::id()) {
     return $next($request);

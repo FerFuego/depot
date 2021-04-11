@@ -123,21 +123,45 @@
 
 				@endforeach
 				
-				{{-- <div class="card">
+				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Title</h3>
+						<h3 class="card-title">Reservas</h3>
 						<div class="card-tools">
 							<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fas fa-minus"></i></button>
 							<button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove"><i class="fas fa-times"></i></button>
 						</div>
 					</div>
 					<div class="card-body">
-						Start creating your amazing application!
+						<form action="{{ route('bookings.store') }}" method="POST">
+							{{ csrf_field() }}
+							<div class="form-group">
+								<label for="sucursal">Sucursal</label>
+								<select name="sucursal" id="select_sucursal" class="form-control selectpicker" data-live-search="true">
+									<option>Seleccione Sucursal</option>
+									@foreach ( $sucursals as $sucursal )
+										<option value="{{ $sucursal->id }}" @if ($loop->first) selected @endif>{{ $sucursal->name }}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="supplier">Proveedor</label>
+								<input type="text" name="supplier" id="supplier" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label for="day">Dia</label>
+								<input type="date" name="day" id="day" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label for="pallets">Cantidad de Palets</label>
+								<input type="number" name="pallets" id="pallets" class="form-control" min="1" max="32" value="1" required>
+							</div>
+							<input type="submit" value="Reservar" class="btn btn-success float-right">
+						</form>
 					</div>
 					<div class="card-footer">
-						Footer
+						Turnero Proveedor
 					</div>
-				</div> --}}
+				</div>
 
 			</section>
 			

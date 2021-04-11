@@ -114,6 +114,12 @@
                             <p>RRHH</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/bookings') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>Reservas</p>
+                        </a>
+                    </li>
                 @endcanany
                {{--  <li class="nav-header">MISCELLANEOUS</li>
                 <li class="nav-item">

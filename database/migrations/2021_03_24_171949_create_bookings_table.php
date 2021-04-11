@@ -15,13 +15,13 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('supplier');
+            $table->string('supplier')->nullable();
             $table->string('day');
-            $table->string('pallets');
+            $table->string('pallets')->nullable();
             $table->string('time');
             $table->string('start');
             $table->string('end');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
