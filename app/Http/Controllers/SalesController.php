@@ -21,6 +21,8 @@ class SalesController extends Controller
         $sales = Sale::orderBy('created_at', 'desc')->get();
         $sucursals = Sucursal::orderBy('id', 'asc')->get();
         $salesToday = $service->calcDailySales($sales);
+        $totalSales = $service->calcTotalSales($sales);
+        $totalClients = $service->calcTotalClients($sales);
         $days = Sale::select('created_at')
                     ->orderBy('created_at', 'desc')
                     ->groupBy(DB::raw('Date(created_at)'))
@@ -31,7 +33,9 @@ class SalesController extends Controller
             'sales' => $sales,
             'sucursals' => $sucursals,
             'salesToday' => $salesToday,
-            'request' => []
+            'request' => [],
+            'totalSales' => $totalSales,
+            'totalClients' => $totalClients
         ]);
     }
 
@@ -161,13 +165,17 @@ class SalesController extends Controller
         $sales = $query->get();
 
         $salesToday = $service->calcDailySales($sales);
+        $totalSales = $service->calcTotalSales($sales);
+        $totalClients = $service->calcTotalClients($sales);
 
         return view('sales.index', [
             'sales' => $sales,
             'days'  => $days,
             'sucursals' => $sucursals,
             'salesToday' => $salesToday,
-            'request'   => $request->all()
+            'request'   => $request->all(),
+            'totalSales' => $totalSales,
+            'totalClients' => $totalClients
         ]);
     } 
 }

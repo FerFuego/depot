@@ -46,30 +46,6 @@
                 </div>
             </div>
             
-            {{-- <div class="col-lg-3 col-6">
-                <div class="small-box bg-warning">
-                    <div class="inner">
-                        <h3>44</h3>
-                        <p>User Registrations</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-danger">
-                    <div class="inner">
-                        <h3>65</h3>
-                        <p>Unique Visitors</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
-                </div>
-            </div> --}}
-            
         </div>
     </div>
 </section>
@@ -129,17 +105,6 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Fecha / Hora</th>
-                                    <th>Turno</th>
-                                    <th>Sucursal</th>
-                                    <th>Importe</th>
-                                    <th>Clientes</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </tfoot>
                             <tbody>
                                 @foreach($sales as $key => $sale)
                                     <tr>
@@ -153,7 +118,7 @@
                                                 @endforeach
                                             @endif
                                         </td>
-                                        <td>${{ $sale->amount }}</td>
+                                        <td>${{ number_format($sale->amount, 2,',','.') }}</td>
                                         <td>{{ $sale->clients }}</td>
                                         <td>
                                             {{-- <a class="btn btn-primary btn-sm" href="{{ url('/sales/'. $sale->id ) }}">
@@ -169,6 +134,17 @@
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Totales</th>
+                                    <th>${{ number_format($totalSales, 2,',','.') }}</th>
+                                    <th>{{ number_format($totalClients, 0,',','.') }}</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

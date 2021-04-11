@@ -36,4 +36,20 @@ class SaleService {
         $sale->user()->attach( auth()->user()->id );
     }
 
+    public function calcTotalSales ($sales) {
+        $total = 0;
+        foreach ($sales as $sale) {
+            $total += $sale->amount;
+        }
+        return $total;
+    }
+
+    public function calcTotalClients ($sales) {
+        $total = 0;
+        foreach ($sales as $sale) {
+            $total += $sale->clients;
+        }
+        return $total;
+    }
+
 }
