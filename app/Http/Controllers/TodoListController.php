@@ -14,54 +14,11 @@ class TodoListController extends Controller
      */
     public function index()
     {
-        $todoLists = TodoList::all();
+        $todoLists = TodoList::orderBy('created_at', 'desc')->paginate();
 
         return view('todolists.index', [
             'todoLists' => $todoLists
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TodoList  $todoList
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TodoList $todoList)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\TodoList  $todoList
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TodoList $todoList)
-    {
-        //
     }
 
     /**
@@ -79,14 +36,4 @@ class TodoListController extends Controller
         return response()->json( $request->all() ); 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\TodoList  $todoList
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(TodoList $todoList)
-    {
-        //
-    }
 }

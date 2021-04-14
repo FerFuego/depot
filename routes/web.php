@@ -38,7 +38,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('sucursals', 'SucursalController')->middleware('role:superadmin,admin');
     Route::resource('sales', 'SalesController');
     Route::resource('tasks', 'TaskController');
-    Route::resource('todos', 'TodoController');
+    Route::get('todos/check', 'TodoController@check');
+    Route::resource('todos', 'TodoController')->middleware('role:superadmin,admin');
     Route::resource('todolists', 'TodoListController');
     Route::resource('notifications', 'NotificationController');
     Route::resource('offers', 'OfferController');

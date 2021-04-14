@@ -14,54 +14,15 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $notifications = Notification::orderBy('id', 'asc')->get();
+        if (auth()->user()->roles->first()->slug == "superadmin" || auth()->user()->roles->first()->slug == "admin") {
+            $notifications = Notification::orderBy('id', 'asc')->get();
+        } else {
+            $notifications = Notification::where('user_id', auth()->user()->id)->orderBy('id', 'asc')->get();
+        }
 
         return view('notifications/index', [
             'notifications' => $notifications
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Notification $notification)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Notification $notification)
-    {
-        //
     }
 
     /**
@@ -79,14 +40,4 @@ class NotificationController extends Controller
         return response()->json( 'work!' );  
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Notification $notification)
-    {
-        //
-    }
 }

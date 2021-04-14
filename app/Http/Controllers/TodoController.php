@@ -79,6 +79,15 @@ class TodoController extends Controller
         ]);
     }
 
+    public function check()
+    {
+        $sucursals = auth()->user()->sucursals;
+
+        return view('todos.check ', [
+            'sucursals' => $sucursals
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

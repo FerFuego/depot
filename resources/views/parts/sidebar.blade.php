@@ -12,19 +12,9 @@
     <div class="sidebar">
 
         @guest
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-            @if (Route::has('register'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-            @endif --}}
+            {{-- Nothing --}}
         @else
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="../../img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
                 <div class="info">
                     <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                 </div>
@@ -78,25 +68,25 @@
                     </li>
                     <li class="nav-item has-treeview {{-- menu-open --}}">
                         <a href="{{ url('/todos') }}" class="nav-link {{-- active --}}">
-                            <i class="nav-icon far fa-plus-square"></i>
+                            <i class="nav-icon far fa-list-alt"></i>
                             <p>Tareas <i class="fas fa-angle-left right"></i></p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ url('/todos') }}" class="nav-link {{-- active --}}">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fas fa-tasks nav-icon"></i>
                                     <p>Ver las Listas de Tareas</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('/tasks') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fas fa-tasks nav-icon"></i>
                                     <p>Ver todas las Tareas</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('/todolists') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fas fa-tasks nav-icon"></i>
                                     <p>Ver Tareas Realizadas</p>
                                 </a>
                             </li>
@@ -121,13 +111,20 @@
                         </a>
                     </li>
                 @endcanany
-               {{--  <li class="nav-header">MISCELLANEOUS</li>
-                <li class="nav-item">
-                    <a href="https://adminlte.io/docs/3.0" class="nav-link">
-                    <i class="nav-icon fas fa-file"></i>
-                    <p>Documentation</p>
-                    </a>
-                </li> --}}
+                @canany(['isEncargado'])
+                    <li class="nav-item">
+                        <a href="{{ url('/sales') }}" class="nav-link">
+                            <i class="nav-icon fas fa-money-check-alt"></i>
+                            <p>Ventas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/todos/check') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>Tareas</p>
+                        </a>
+                    </li>
+                @endcanany
                 <li class="nav-item has-treeview">
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();

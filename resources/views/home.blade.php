@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				
-				<div class="col-lg-3 col-6">
+				{{-- <div class="col-lg-3 col-6">
 					<div class="small-box bg-warning">
 						<div class="inner">
 							<h3>44</h3>
@@ -61,9 +61,9 @@
 						</div>
 						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
-				</div>
+				</div> --}}
 
-				<div class="col-lg-3 col-6">
+				{{-- <div class="col-lg-3 col-6">
 					<div class="small-box bg-danger">
 						<div class="inner">
 							<h3>65</h3>
@@ -74,15 +74,14 @@
 						</div>
 						<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
-				</div>
+				</div> --}}
 				
 			</div>
 		</div>
 		
         <div class="row">
 
-            <section class="col-lg-7 connectedSortable">
-
+            {{-- <section class="col-lg-7 connectedSortable">
 				@foreach( $sucursals as $j => $sucursal)
 
 					<div class="card">
@@ -122,42 +121,10 @@
 					</div>
 
 				@endforeach
-				
-				{{-- <div class="card">
-					<div class="card-header">
-						<h3 class="card-title">Reservas</h3>
-						<div class="card-tools">
-							<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fas fa-minus"></i></button>
-							<button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove"><i class="fas fa-times"></i></button>
-						</div>
-					</div>
-					<div class="card-body">
-						<form action="{{ route('bookings.store') }}" method="POST">
-							{{ csrf_field() }}
-							<div class="form-group">
-								<label for="supplier">Proveedor</label>
-								<input type="text" name="supplier" id="supplier" class="form-control" required>
-							</div>
-							<div class="form-group">
-								<label for="day">Dia</label>
-								<input type="date" name="day" id="day" class="form-control" required>
-							</div>
-							<div class="form-group">
-								<label for="pallets">Cantidad de Palets</label>
-								<input type="number" name="pallets" id="pallets" class="form-control" min="1" max="32" value="1" required>
-							</div>
-							<input type="submit" value="Reservar" class="btn btn-success float-right">
-						</form>
-					</div>
-					<div class="card-footer">
-						Turnero Proveedor
-					</div>
-				</div> --}}
+			</section> --}}
 
-			</section>
-			
 			<section class="col-lg-5 connectedSortable">
-
+				{{-- ABM Sales --}}
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Cargar Ventas</h3>
@@ -211,7 +178,10 @@
 					</div>
 					<!-- /.card-body -->
 				</div>
-
+				{{-- /. ABM Sales --}}
+			</section>
+			
+			<section class="col-lg-5 connectedSortable">
 				<!-- Calendar -->
                 <div class="card bg-gradient-success">
                     <div class="card-header border-0">
@@ -249,7 +219,6 @@
                     <!-- /.card-body -->
                 </div>
 				<!-- /.card -->
-				
 			</section>
 			
 		</div>

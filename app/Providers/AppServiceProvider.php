@@ -8,6 +8,7 @@ use App\Models\Notification;
 use Illuminate\Support\Facades\DB;
 use App\Observers\TodoListObserver;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,9 @@ class AppServiceProvider extends ServiceProvider
 
         // Observers
         TodoList::observe(TodoListObserver::class);
+
+        // Paginator
+        Paginator::useBootstrap();
 
         // Compartir informacion a todas las vistas
         $global_notifications = Notification::where('state','0')->get();
