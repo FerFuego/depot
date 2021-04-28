@@ -43,6 +43,8 @@
                                     <th>Titulo</th>
                                     <th>Sucursal</th>
                                     <th>Archivo</th>
+                                    <th>Dia Arranque</th>
+                                    <th>Dia Finaliza</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -52,6 +54,8 @@
                                     <th>Titulo</th>
                                     <th>Sucursal</th>
                                     <th>Archivo</th>
+                                    <th>Dia Arranque</th>
+                                    <th>Dia Finaliza</th>
                                     <th>Accion</th>
                                 </tr>
                             </tfoot>
@@ -75,6 +79,12 @@
                                             </a>
                                         </td>
                                         <td>
+                                            {{ $offer->time_start }}
+                                        </td>
+                                        <td>
+                                            {{ $offer->time_end }}
+                                        </td>
+                                        <td>
                                             <a class="btn btn-primary btn-sm" href="{{ url('/offers/'. $offer->id ) }}">
                                                 <i class="fas fa-folder"></i> Ver
                                             </a>
@@ -83,6 +93,9 @@
                                             </a>
                                             <a class="btn btn-danger btn-sm" href="#" data-toggle="modal" data-target="#deleteOfferModal" data-offerid="{{ $offer->id }}">
                                                 <i class="fas fa-trash"></i> Eliminar
+                                            </a>
+                                            <a class="btn btn-success btn-sm" href="{{ url('offers/print/'. $offer->id) }}">
+                                                <i class="fas fa-print"></i> Imprimir
                                             </a>
                                         </td>
                                     </tr>

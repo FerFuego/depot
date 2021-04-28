@@ -111,7 +111,13 @@
                         </a>
                     </li>
                 @endcanany
-                @canany(['isEncargado'])
+                @canany(['isEncargado','isGerente'])
+                    <li class="nav-item">
+                        <a href="{{ url('/bookings') }}" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>Deposito</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ url('/sales') }}" class="nav-link">
                             <i class="nav-icon fas fa-money-check-alt"></i>

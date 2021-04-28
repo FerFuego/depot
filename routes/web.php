@@ -31,6 +31,7 @@ Route::get('proveedores', function() {
     return view('suppliers')->with('result');
 });
 
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('users', 'UsersController')->middleware('role:superadmin,admin');
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('download/{file}', function ($file) {
         return Response::download( public_path('uploads/') . $file);
     });
+    Route::get('offers/print/{id}', 'OfferController@download');
     Route::post('sales/filter', 'SalesController@filter');
     Route::post('bookings/filter', 'BookingController@filter');
 });

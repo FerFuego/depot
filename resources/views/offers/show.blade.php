@@ -44,7 +44,7 @@
 						</div>
 						<div class="card-footer">
 							<a href="{{ url()->previous() }}" class="btn btn-primary">Volver</a>
-							<a href="#" class="btn btn-success btn-print">Imprimir</a>
+							<a href="{{ url('offers/print/'. $offer->id) }}" class="btn btn-success btn-print">Imprimir</a>
 						</div>
 					</div>
 				</div>

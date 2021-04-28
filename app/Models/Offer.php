@@ -12,7 +12,9 @@ class Offer extends Model
     protected $fillable = [
         'title',
         'details',
-        'file'
+        'file',
+        'time_start',
+        'time_end'
     ];
 
     protected $with = ['sucursals'];

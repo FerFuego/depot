@@ -6,6 +6,7 @@ use App\Models\Offer;
 use App\Models\Sucursal;
 use Illuminate\Http\Request;
 use App\Services\OfferService;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Http\Requests\OfferRequest;
 
 class OfferController extends Controller
@@ -129,5 +130,20 @@ class OfferController extends Controller
         session()->flash('success','Oferta Eliminada Correctamente!');
 
         return redirect('/offers');
+    }
+
+    public function download($id)
+    {
+        $offer = Offer::findOrFail($id);
+
+        $data = [
+            'title' => $offer->title,
+            'details' => $offer->details,
+            'file'  => $offer->file
+        ];
+    
+        $pdf = \PDF::loadView('offers.print', $data);
+    
+        return $pdf->download('banner.pdf');
     }
 }

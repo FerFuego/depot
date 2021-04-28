@@ -61,6 +61,16 @@
                         </span>
                     @enderror
                 </div>
+                <div class="row ml-1">
+                  <div class="form-group mr-5">
+                    <label for="time_start">Dia Comienzo Oferta</label><br>
+                    <input type="date" name="time_start" id="time_start" class="form-control" value="{{ $offer->time_start }}">
+                  </div>
+                  <div class="form-group">
+                    <label for="time_end">Dia Finaliza Oferta</label><br>
+                    <input type="date" name="time_end" id="time_end"  class="form-control" value="{{ $offer->time_end }}">
+                  </div>
+                </div>
                 <div class="form-group">
                     <label for="file">Imagen</label>
                     <div class="col-3 mb-3">
