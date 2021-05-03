@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('offers/print/{id}', 'OfferController@download');
     Route::post('sales/filter', 'SalesController@filter');
     Route::post('bookings/filter', 'BookingController@filter');
+    Route::post('bookings/state', 'BookingController@state');
 });
 
 Route::post('bookings', 'BookingController@store')->name('storeBooking');

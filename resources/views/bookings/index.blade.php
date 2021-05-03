@@ -34,6 +34,12 @@
                     </div>
                 </div>
                 <div class="card-body">
+
+                    <div class="mt-3 float-left">
+                        <span class="badge badge-success">Completado</span>
+                        <span class="badge badge-warning">En Proceso</span>
+                        <span class="badge badge-danger">Cancelado</span>
+                    </div>
                     
                     {!! Form::open(['url' => 'bookings/filter', 'method' => 'post', 'class' => 'form form-inline mb-3 float-right']) !!}
                         {!! Form::token() !!}
@@ -65,9 +71,28 @@
                                                 @php $continue2++; @endphp
                                                 <h4>{{ $continue2 }}</h4> 
                                                 @foreach($bookings as $booking)
-                                                    @if( $booking->day == date('Y-m', $start) .'-'. $continue2 )
+                                                    @if( $booking->day == date('Y-m', $start) .'-'. $continue2 || $booking->day == date('Y-m', $start) .'-0'. $continue2 )
                                                         @if ($booking->supplier)
-                                                            <span class="badge badge-success">{{ Str::upper($booking->supplier) ." ". \Carbon\Carbon::create($booking->start)->format('H:i') ." ". \Carbon\Carbon::create($booking->end)->format('H:i') ." - ". $booking->time ."min" }}</span><br>
+                                                        <span 
+                                                            style="cursor: pointer; position: relative;"
+                                                            class="badge 
+                                                            {{ (!$booking->state) ? 'badge-info':''}}
+                                                            {{ ($booking->state == 'Completado') ? 'badge-success':''}}
+                                                            {{ ($booking->state == 'En proceso') ? 'badge-warning':''}}
+                                                            {{ ($booking->state == 'Cancelado') ? 'badge-danger':''}}"
+                                                            onclick="openPopUp({{$booking->id}})"
+                                                            title="{{ $booking->state}}"
+                                                            id="{{$booking->id}}">
+                                                                <div 
+                                                                    class="d-none"
+                                                                    id="item_{{$booking->id}}"
+                                                                    style="position: absolute; bottom: 18px; left: 0; display: flex;border-radius: 10px; overflow: hidden;">
+                                                                    <div onclick="setStateBooking({{$booking->id}}, 'En proceso')" class="bg-warning p-2 proceso">En proceso</div>
+                                                                    <div onclick="setStateBooking({{$booking->id}}, 'Cancelado')" class="bg-danger p-2 cancelado">Cancelado</div>
+                                                                    <div onclick="setStateBooking({{$booking->id}}, 'Completado')" class="bg-success p-2 completado">Completado</div>
+                                                                </div>
+                                                                {{ Str::upper($booking->supplier) ." ". \Carbon\Carbon::create($booking->start)->format('H:i') ." ". \Carbon\Carbon::create($booking->end)->format('H:i') ." - ". $booking->time ."min" }}
+                                                            </span><br>
                                                         @endif
                                                     @endif
                                                 @endforeach

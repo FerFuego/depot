@@ -135,4 +135,11 @@ class BookingController extends Controller
         ]);
 
     }
+
+    public function state(Request $request) {
+        $booking = Booking::findOrFail($request->id);
+        $booking->state = $request->state;
+        $booking->update();
+        return $booking;
+    }
 }

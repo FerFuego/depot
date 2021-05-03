@@ -281,3 +281,37 @@ $('.todo-list').sortable({
     forcePlaceholderSize: true,
     zIndex              : 999999
 })
+
+function openPopUp(id) {
+    $('#item_' + id).toggleClass('d-none');
+}
+
+function setStateBooking(id, state) {
+    var attrs = {
+        'id' : id,
+        'state' : state
+    }
+
+    const ops = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: JSON.stringify(attrs),
+        url: '/bookings/state'
+    };
+
+    axios(ops).then(function (response) {
+        var classe = (state == 'Completado') ? 'badge-success' : (state == 'Cancelado') ? 'badge-danger' : 'badge-warning';
+        $('#'+id).removeClass('badge-success');
+        $('#'+id).removeClass('badge-danger');
+        $('#'+id).removeClass('badge-warning');
+        $('#'+id).removeClass('badge-info');
+        $('#'+id).addClass(classe);
+    })
+
+    .catch(function (error) {
+        console.log(error);
+    })
+}
