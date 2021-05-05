@@ -110,6 +110,10 @@ class BookingController extends Controller
         // insert empty time
         $service->storeEmptyTime($request);
 
+        if ($request->email) {
+            \Mail::to($request->email)->send(new \App\Mail\SupplierNotification($booking));
+        }
+
         session()->flash('success', 'Reserva cargada correctamente');
         
         return view('suppliers', [
