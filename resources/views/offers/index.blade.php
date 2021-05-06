@@ -42,7 +42,6 @@
                                     <th>ID</th>
                                     <th>Titulo</th>
                                     <th>Sucursal</th>
-                                    <th>Archivo</th>
                                     <th>Dia Arranque</th>
                                     <th>Dia Finaliza</th>
                                     <th>Accion</th>
@@ -53,9 +52,8 @@
                                     <th>ID</th>
                                     <th>Titulo</th>
                                     <th>Sucursal</th>
-                                    <th>Archivo</th>
-                                    <th>Dia Arranque</th>
-                                    <th>Dia Finaliza</th>
+                                    <th>Desde</th>
+                                    <th>Hasta</th>
                                     <th>Accion</th>
                                 </tr>
                             </tfoot>
@@ -74,15 +72,10 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('/download/' . $offer->file ) }}" title="Descargar">
-                                                <i class="fas fa-image fa-2x"></i>
-                                            </a>
+                                            {{ \Carbon\Carbon::create($offer->time_start)->format('d-m-Y') }}
                                         </td>
                                         <td>
-                                            {{ $offer->time_start }}
-                                        </td>
-                                        <td>
-                                            {{ $offer->time_end }}
+                                            {{ \Carbon\Carbon::create($offer->time_end)->format('d-m-Y') }}
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm" href="{{ url('/offers/'. $offer->id ) }}">

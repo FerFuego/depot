@@ -4,7 +4,7 @@
             html,
             body {
                 height: 100vh;
-                background-image: url( {{ $file ? "./uploads/".$file : "./img/banner-1.png" }} );
+                background-image: url({{ $file ? "uploads/".$file : "img/banner-1.png" }});
                 background-size:  100%;
                 background-repeat: no-repeat;
             }
@@ -26,7 +26,7 @@
         </style>
     </head>
     <body>
-        <h3>{{ $title }}</h3>
-        <p>{{ $details }}</p>
+        <h3>{{ $title ?? '' }}</h3>
+        <p>{{ $details ?? '' }}</p>
     </body>
 </html>

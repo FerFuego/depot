@@ -2,6 +2,33 @@
 
 @section('content')
 
+<style>
+	.card-body {
+		background-image: url({{ $offer->file ? "../uploads/".$offer->file : "../img/banner-1.png" }});
+		background-size:  100%;
+		background-repeat: no-repeat;
+		height: 800px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.card-body h3{
+		display: block;
+		font-size: 90px;
+		text-align: center;
+		margin-bottom: 0;
+		width: 100%;
+	}
+	.card-body p {
+		display: block;
+		font-size: 40px;
+		text-align: center;
+		width: 100%;
+		padding: 0 15%
+	}
+</style>
+
 <section class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-2">
@@ -28,19 +55,8 @@
 							<h3><b>{{ $offer->title }}</b></h3>
 						</div>
 						<div class="card-body">
-                            <p>{{ $offer->details }}</p>
-
-                            <a href="{{ url('/download/' . $offer->file ) }}" class="d-block mb-3" title="Descargar">
-                                <img src="{{ url('/uploads/'. $offer->file) }}" class="img-fluid" alt="banner">
-                            </a>
-							
-                            @if ( $offer->sucursals )
-                                @foreach ( $offer->sucursals as $sucursal ) 
-                                    <span class="badge badge-success">
-                                        {{ $sucursal->name }} 
-                                    </span>
-                                @endforeach
-                            @endif
+							<h3><b>{{ $offer->title }}</b></h3>
+                            <p>{{ $offer->details }}</p>                            
 						</div>
 						<div class="card-footer">
 							<a href="{{ url()->previous() }}" class="btn btn-primary">Volver</a>
