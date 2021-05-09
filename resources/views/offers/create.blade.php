@@ -37,8 +37,9 @@
                   <label for="sucursal">Sucursales</label>
                   <select name="sucursal[]" id="select_sucursal" class="form-control selectpicker" multiple data-live-search="true" required>
                     <option>Seleccione Sucursal</option>
+                    <option value="todas">Todas las sucursales</option>
                     @foreach ( $sucursals as $sucursal )
-                      <option value="{{ $sucursal->id }}" @if ($loop->first) selected @endif>{{ $sucursal->name }}</option>
+                      <option value="{{ $sucursal->id }}">{{ $sucursal->name }}</option>
                     @endforeach
                   </select>
                 </div>

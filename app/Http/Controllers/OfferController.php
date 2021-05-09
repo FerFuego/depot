@@ -47,7 +47,6 @@ class OfferController extends Controller
      */
     public function store(OfferRequest $request, OfferService $service)
     {
-
         $params = $request->all();
 
         if ( $request->file ) {

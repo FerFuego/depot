@@ -38,6 +38,7 @@
                   <label for="sucursal">Sucursal</label>
                   <select name="sucursal[]" id="select_sucursal" class="form-control selectpicker" multiple data-live-search="true">
                     <option>Seleccione Sucursal</option>
+                    <option value="todas">Todas las sucursales</option>
                     @foreach ( $sucursals as $sucursal )
                       <option value="{{ $sucursal->id }}" {{ in_array( $sucursal->id, $offer->sucursals->pluck('id')->toArray() ) ? 'selected' : '' }}>{{ $sucursal->name }}</option>
                     @endforeach
