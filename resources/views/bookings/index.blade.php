@@ -35,21 +35,28 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="mt-3 float-left">
-                        <span class="badge badge-success">Completado</span>
-                        <span class="badge badge-warning">En Proceso</span>
-                        <span class="badge badge-danger">Cancelado</span>
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+
+                        <a href="{{ route('bookings.create') }}" class="btn btn-info"><i class="fas fa-plus"></i> Nueva Reserva</a>
+    
+                        <div>
+                            <label for="">Estados:</label>
+                            <span class="badge badge-success">Completado</span>
+                            <span class="badge badge-warning">En Proceso</span>
+                            <span class="badge badge-danger">Cancelado</span>
+                        </div>
+                        
+                        {!! Form::open(['url' => 'bookings/filter', 'method' => 'post', 'class' => 'form form-inline']) !!}
+                            {!! Form::token() !!}
+                            {!! Form::label('month', 'Mes', ['class' => 'mr-2']) !!}
+                            {!! Form::number('month', $month,   ['class' => 'form-control mr-2', 'min'=>'1', 'max' => '12']) !!}
+                            {!! Form::label('year', 'Año', ['class' => 'mr-2']) !!}
+                            {!! Form::number('year', $year,   ['class' => 'form-control mr-2', 'min'=>'2021', 'max' => '2100']) !!}
+                            {!! Form::submit('Cargar',  ['class' => 'btn btn-info']) !!}
+                        {!! Form::close() !!}
+                        
                     </div>
-                    
-                    {!! Form::open(['url' => 'bookings/filter', 'method' => 'post', 'class' => 'form form-inline mb-3 float-right']) !!}
-                        {!! Form::token() !!}
-                        {!! Form::label('month', 'Mes', ['class' => 'mr-2']) !!}
-                        {!! Form::number('month', $month,   ['class' => 'form-control mr-2', 'min'=>'1', 'max' => '12']) !!}
-                        {!! Form::label('year', 'Año', ['class' => 'mr-2']) !!}
-                        {!! Form::number('year', $year,   ['class' => 'form-control mr-2', 'min'=>'2021', 'max' => '2100']) !!}
-                        {!! Form::submit('Cargar',  ['class' => 'btn btn-info']) !!}
-                    {!! Form::close() !!}
-                    
+
                     <div class="table-responsive">
                         <h2>{{ date('F, Y', $start) }}</h2>
                         <table class="table table-bordered table-striped">

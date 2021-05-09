@@ -32,6 +32,10 @@ class BookingController extends Controller
         ]);
     }
 
+    public function create() {
+        return view('bookings.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -113,12 +117,17 @@ class BookingController extends Controller
         if ($request->email) {
             \Mail::to($request->email)->send(new \App\Mail\SupplierNotification($booking));
         }
-
+        
         session()->flash('success', 'Reserva cargada correctamente');
         
-        return view('suppliers', [
-            'result' => $booking
-        ]);
+        $previous = url()->previous();
+        $previous = explode('/', $previous);
+
+        if (end($previous) == 'proveedores') {
+            return view('suppliers')->with('result', $booking);
+        } else {
+            return redirect()->back()->with('result', $booking);
+        }
     }
 
     public function filter(Request $request) 
