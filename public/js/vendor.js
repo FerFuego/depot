@@ -8798,3 +8798,152 @@ function setStateBooking(id, state) {
         console.log(error);
     })
 }
+
+/**
+ * Supplier Booking
+ */
+function getBookingDay(value) {
+    var time = new Date(value + " 07:00");
+    var x = document.getElementById('pallets').value;
+    const cant = 75;
+    const ops = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: JSON.stringify(value),
+        url: '/bookings/day'
+    };
+
+    axios(ops).then(function (response) {
+        var data = response.data;
+        var info = (x>1) ? '(Seleccione ' + x + ' horarios consecutivos)' : '(Seleccione ' + x + ' horario)';
+        var html = '<label>Hora <span class="text-info">'+info+'</span></label>'
+                    + '<table class="table table-bordered table-striped table-custom">'
+                    + '<tr>'
+                    + '<td>Hora</td>'
+                    + '<td colspan="4">Minutos</td>'
+                    + '</tr>'
+                    + '<tr>';
+        for(var i=0; i<cant; i++) {
+            if (i>0 && i%5 == 0) {
+                html += '</tr>'
+            }
+            if (i==0 || i%5 == 0) {
+                brand=true
+                html += '<tr>'
+            }
+            if (i>0 && i%5 !== 0) {
+                html += '<td><span class="badge">'+format(time, 'hh:mm')+'</span> <input type="checkbox" name="time[]" value="'+format(time, 'yyyy-MM-dd hh:mm:ss')+'" title="'+format(time, 'yyyy-MM-dd hh:mm:ss')+'" '+disableTime(this, data, time)+'></td>';
+                time.setMinutes ( time.getMinutes() + 15 )
+            }
+        }
+        html += '</table>';
+        $('#js-calendar').html(html);
+    })
+
+    .catch(function (error) {
+        console.log(error);
+    })
+}
+
+format = function date2str(x, y) {
+    var z = {
+        M: x.getMonth() + 1,
+        d: x.getDate(),
+        h: x.getHours(),
+        m: x.getMinutes(),
+        s: x.getSeconds()
+    };
+    y = y.replace(/(M+|d+|h+|m+|s+)/g, function(v) {
+        return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-2)
+    });
+
+    return y.replace(/(y+)/g, function(v) {
+        return x.getFullYear().toString().slice(-v.length)
+    });
+}
+
+function disableTime(obj, data, time) {
+    var enabled = '';
+    data.forEach(function(item) {
+        var newT = format(time, 'yyyy-MM-dd hh:mm:ss');
+        if (item.start == newT && item.state !== 'Cancelado') {
+            enabled = 'checked disabled';
+        }
+    })
+    return enabled;
+}
+
+/**
+ * Admin Booking
+ */
+$('#openDayModal').on('show.bs.modal', function (event) {
+    var modal = $(this)
+    const cant = 75;
+    var button = $(event.relatedTarget)
+    var day = button.data('day')
+    var time = new Date(day + " 07:00");
+    const ops = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: JSON.stringify(day),
+        url: '/bookings/day'
+    };
+
+    axios(ops).then(function (response) {
+        var data = response.data;
+        var html = '<table class="table table-bordered table-striped table-custom">'
+                    + '<tr>'
+                    + '<td>Hora</td>'
+                    + '<td colspan="4">Minutos</td>'
+                    + '</tr>'
+                    + '<tr>'
+            for(var i=0; i<cant; i++) {
+                if (i>0 && i%5 == 0) {
+                    html += '</tr>'
+                }
+                if (i==0 || i%5 == 0) {
+                    html += '<tr>'
+                }
+                if (i>0 && i%5 !== 0) {
+                    html += '<td><span class="badge">'+format(time, 'hh:mm')+'</span> <span class="badge '+getState(data, time)+'">'+printTime(this, data, time)+'</span></td>';
+                    time.setMinutes ( time.getMinutes() + 15 )
+                }
+            }
+            html += '</table>';
+
+            $('#bookingsPerDay').html(html);
+    })
+
+    .catch(function (error) {
+        console.log(error);
+    })
+})
+
+function printTime(obj, data, time) {
+    var enabled = '';
+    data.forEach(function(item) {
+        var newT = format(time, 'yyyy-MM-dd hh:mm:ss');
+        if (item.start == newT) {
+            enabled = item.supplier;
+        }
+    })
+    return enabled;
+}
+
+function getState(data, time) {
+    var state = '';
+    data.forEach(function(item) {
+        var newT = format(time, 'yyyy-MM-dd hh:mm:ss');
+        if (item.start == newT) {
+            state = (item.state == 'Completado') ? 'badge-success': (item.state == 'Cancelado') ? 'badge-danger': (item.state == 'En proceso') ? 'badge-warning':'badge-info';
+        }
+    })
+
+    return state;
+}

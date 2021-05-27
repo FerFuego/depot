@@ -737,6 +737,7 @@ body::before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-y: scroll;
 }
 
 .login-container__column .card {
@@ -754,4 +755,8 @@ body::before {
 }
 .alert strong {
   margin-right: 10px;
+}
+
+.table-custom td {
+  padding: 0.25rem;
 }

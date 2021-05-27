@@ -35,8 +35,8 @@ class BookingService {
      * @return boolean
      */
     public function checkTime () {
-        $time_open = env('TIME_OPEN', '09:00:00');
-        $time_close = env('TIME_CLOSE', '18:00:00');
+        $time_open = env('TIME_OPEN', '07:00:00');
+        $time_close = env('TIME_CLOSE', '21:00:00');
         $now = Carbon::now();
         $control_start = Carbon::parse($time_open);
         $control_end = Carbon::parse($time_close);
@@ -60,7 +60,7 @@ class BookingService {
     public function checkPlaces($request) {
         // ver cuanto tiempo queda desde el ultimo registro hasta el final del dia
         // luego compararlo con el tiempo de descargas
-        $time_close = env('TIME_CLOSE', '18:00:00');
+        $time_close = env('TIME_CLOSE', '21:00:00');
         $last_booking = $this->getLastBooking($request);
         $incoming_minutes = $this->calcTimePallets($request);
 

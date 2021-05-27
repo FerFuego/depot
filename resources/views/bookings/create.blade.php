@@ -38,16 +38,17 @@
                     <input type="text" name="supplier" id="supplier" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="day">Seleccione Dia</label>
-                    <input type="date" name="day" id="day" class="form-control" required>
+                  <label for="pallets">Cantidad de Palets <sup class="text-info"> ( 1 palet = 15min de descarga)</sup></label>
+                  <input type="number" name="pallets" id="pallets" class="form-control" min="1" max="32" value="1" required>
                 </div>
+                <div class="form-group">
+                    <label for="day">Seleccione Dia</label>
+                    <input type="date" name="day" id="day" class="form-control" onchange="getBookingDay(this.value)" required>
+                </div>
+                <div id="js-calendar"></div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="pallets">Cantidad de Palets <sup class="text-info"> ( 1 palet = 15min de descarga)</sup></label>
-                    <input type="number" name="pallets" id="pallets" class="form-control" min="1" max="32" value="1" required>
                 </div>
                 <input type="submit" value="Reservar" class="btn btn-success float-right">
             </form>

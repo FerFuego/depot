@@ -31,6 +31,6 @@
         <p><b>Tiempo disponible:</b> {{ $booking->time }}min</p>
         <p><b>Horario:</b> {{ \Carbon\Carbon::parse($booking->start)->format('h:i:s A') }}</p> --}}
         <p>Turno reservado para el dia: {{  \Carbon\Carbon::parse($booking->start)->format('d-m-Y') }} </p> 
-        <p>De {{  \Carbon\Carbon::parse($booking->start)->format('H:i') ." a ". \Carbon\Carbon::parse($booking->end)->format('H:i') ." - ". $booking->time ."min" }}</p>
+        <p>A las {{  \Carbon\Carbon::parse($booking->start)->format('H:i') }}</p>
     </body>
 </html>

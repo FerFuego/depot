@@ -19,7 +19,7 @@ class BookingController extends Controller
         $current_year = Carbon::now()->format('Y');
         $current_month = Carbon::now()->format('m');
         $start = strtotime("$current_year-$current_month-01");
-        $bookings = Booking::orderBy('id', 'asc')->get();
+        $bookings = Booking::orderBy('start', 'asc')->get();
 
         return view('bookings.index', [
             'bookings' => $bookings,
@@ -44,6 +44,58 @@ class BookingController extends Controller
      */
     public function store(Request $request, BookingService $service)
     {
+
+        //dd($request->all());
+
+        // chek if is a valid date
+        $status = $service->checkDate($request);
+
+        if ($status !== 'good' && $status !== 'today') {
+            session()->flash('error', $status);
+            return view('suppliers', [
+                'result' => ''
+            ]);
+        }
+
+        // check if there are availble places
+        if (!$service->checkPlaces($request)) {
+            session()->flash('error', 'No hay lugares disponibles en este dia');
+            return view('suppliers', [
+                'result' => ''
+            ]);
+        }
+
+        // get params
+        $params = $request->all();
+
+        foreach ($params['time'] as $value) {
+            $params['time'] = 15;
+            $params['start'] = $value;
+            $params['end'] = $service->calcEndOfTimes($params['start'], 15);
+            $booking = Booking::create($params);
+        }
+
+        if ($request->email) {
+            \Mail::to($request->email)->send(new \App\Mail\SupplierNotification($booking));
+        }
+        
+        session()->flash('success', 'Reserva cargada correctamente');
+        
+        $previous = url()->previous();
+        $previous = explode('/', $previous);
+
+        if (end($previous) == 'proveedores') {
+            return view('suppliers')->with('result', $booking);
+        } else {
+            return redirect()->back()->with('result', $booking);
+        }
+    }
+
+    /* public function store(Request $request, BookingService $service)
+    {
+
+        dd($request->all());
+
         // chek if is a valid date
         $status = $service->checkDate($request);
 
@@ -128,7 +180,7 @@ class BookingController extends Controller
         } else {
             return redirect()->back()->with('result', $booking);
         }
-    }
+    } */
 
     public function filter(Request $request) 
     {
@@ -149,10 +201,22 @@ class BookingController extends Controller
 
     }
 
-    public function state(Request $request) {
+    /**
+     * Change Booking State
+     */
+    public function state(Request $request) 
+    {
         $booking = Booking::findOrFail($request->id);
         $booking->state = $request->state;
         $booking->update();
         return $booking;
+    }
+
+    /**
+     * Get Booking Days
+     */
+    public function getBookingsDay (Request $request) {
+        $bookings = Booking::where('day', $request[0])->get();
+        return response()->json($bookings);
     }
 }

@@ -76,20 +76,22 @@
                                         <td>
                                             @if( $startpos > 0 && $continue2 < date("t", $start) ) 
                                                 @php $continue2++; @endphp
-                                                <h4>{{ $continue2 }}</h4> 
+                                                <a href="#" data-toggle="modal" data-target="#openDayModal" data-day="{{ $year .'-'. $month .'-'. (($continue2 < 10)?'0':''). $continue2 }}">
+                                                    <h4>{{ $continue2 }}</h4>
+                                                </a> 
                                                 @foreach($bookings as $booking)
                                                     @if( $booking->day == date('Y-m', $start) .'-'. $continue2 || $booking->day == date('Y-m', $start) .'-0'. $continue2 )
                                                         @if ($booking->supplier)
-                                                        <span 
-                                                            style="cursor: pointer; position: relative;"
-                                                            class="badge 
-                                                            {{ (!$booking->state) ? 'badge-info':''}}
-                                                            {{ ($booking->state == 'Completado') ? 'badge-success':''}}
-                                                            {{ ($booking->state == 'En proceso') ? 'badge-warning':''}}
-                                                            {{ ($booking->state == 'Cancelado') ? 'badge-danger':''}}"
-                                                            onclick="openPopUp({{$booking->id}})"
-                                                            title="{{ $booking->state}}"
-                                                            id="{{$booking->id}}">
+                                                            <span 
+                                                                style="cursor: pointer; position: relative;"
+                                                                class="badge 
+                                                                {{ (!$booking->state) ? 'badge-info':''}}
+                                                                {{ ($booking->state == 'Completado') ? 'badge-success':''}}
+                                                                {{ ($booking->state == 'En proceso') ? 'badge-warning':''}}
+                                                                {{ ($booking->state == 'Cancelado') ? 'badge-danger':''}}"
+                                                                onclick="openPopUp({{$booking->id}})"
+                                                                title="{{ $booking->state}}"
+                                                                id="{{$booking->id}}">
                                                                 <div 
                                                                     class="d-none"
                                                                     id="item_{{$booking->id}}"
@@ -98,14 +100,16 @@
                                                                     <div onclick="setStateBooking({{$booking->id}}, 'Cancelado')" class="bg-danger p-2 cancelado">Cancelado</div>
                                                                     <div onclick="setStateBooking({{$booking->id}}, 'Completado')" class="bg-success p-2 completado">Completado</div>
                                                                 </div>
-                                                                {{ Str::upper($booking->supplier) ." ". \Carbon\Carbon::create($booking->start)->format('H:i') ." ". \Carbon\Carbon::create($booking->end)->format('H:i') ." - ". $booking->time ."min" }}
+                                                                {{ Str::upper($booking->supplier) ." ". \Carbon\Carbon::create($booking->start)->format('H:i') ." a ". \Carbon\Carbon::create($booking->end)->format('H:i') ." - ". $booking->time ."min" }}
                                                             </span><br>
                                                         @endif
                                                     @endif
                                                 @endforeach
                                             @endif
                                             @if( $i == 1 && $j == date("w", $start) )
-                                                <h4>1</h4>
+                                                <a href="#" data-toggle="modal" data-target="#openDayModal" data-day="{{$year .'-'. $month .'-01'}}">
+                                                    <h4>1</h4>
+                                                </a>
                                                 @php $startpos = $index; @endphp
                                             @endif
                                         </td>

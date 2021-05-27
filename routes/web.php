@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('bookings/state', 'BookingController@state');
 });
 
+Route::post('bookings/day', 'BookingController@getBookingsDay');
 Route::post('bookings', 'BookingController@store')->name('storeBooking');
 
 if (Auth::id()) {

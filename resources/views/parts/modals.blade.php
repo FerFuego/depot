@@ -198,3 +198,21 @@
         </div>
     </div>
 </div>
+
+{{-- Booking --}}
+<div id="openDayModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 700px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reservas del Dia </h5>
+                <button class="close" type="button" data-dismiss="modal" arial-label="Close">
+                    <span arial-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body" id="bookingsPerDay">Cargando...</div>
+            <div class="modal-footer">
+                <button class="btn btn-default" type="button" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
