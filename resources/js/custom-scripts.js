@@ -303,9 +303,10 @@ function setStateBooking(id, state) {
     };
 
     axios(ops).then(function (response) {
-        var classe = (state == 'Completado') ? 'badge-success' : (state == 'Cancelado') ? 'badge-danger' : 'badge-warning';
+        var classe = (state == 'Completado') ? 'badge-success' : (state == 'Cancelado') ? 'd-none' : 'badge-warning';
         $('#'+id).removeClass('badge-success');
         $('#'+id).removeClass('badge-danger');
+        $('#'+id).removeClass('d-none'); //new
         $('#'+id).removeClass('badge-warning');
         $('#'+id).removeClass('badge-info');
         $('#'+id).addClass(classe);

@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix
-    .styles([
+   /*  .styles([
         'resources/vendor/fontawesome-free-5.15.1-web/css/all.min.css',
         'resources/css/adminlte.min.css',
         'resources/css/ionicons.min.css',
@@ -25,23 +25,23 @@ mix
         'resources/vendor/datatables-responsive/css/responsive.bootstrap4.min.css',
         'resources/css/app.css'
     ], 'public/css/app.css')
-
+ */
     .js('resources/js/app.js', 'public/js')
 
     .scripts([
-        'resources/vendor/jquery/jquery.min.js',
-        'resources/vendor/jquery-ui/jquery-ui.min.js',
+        'resources/vendor/jquery/jquery.js',
+        'resources/vendor/jquery-ui/jquery-ui.js',
         'resources/vendor/moment/moment.js',
         'resources/js/adminlte.js',
-        'resources/vendor/bootstrap/js/bootstrap.bundle.min.js',
+        'resources/vendor/bootstrap/js/bootstrap.bundle.js',
         'resources/vendor/bootstrap/js/bootstrap.tagsinput.js',
         'resources/vendor/bootstrap/js/bootstrap-select.js',
         'resources/vendor/bootstrap/js/bootstrap-datetimepicker.js',
-        'resources/vendor/bootstrap/js/bootstrap.duallistbox.min.js',
-        'resources/vendor/datatables/jquery.dataTables.min.js',
-        'resources/vendor/datatables-bs4/js/dataTables.bootstrap4.min.js',
-        'resources/vendor/datatables-responsive/js/dataTables.responsive.min.js',
-        'resources/vendor/datatables-responsive/js/responsive.bootstrap4.min.js',
+        'resources/vendor/bootstrap/js/bootstrap.duallistbox.js',
+        'resources/vendor/datatables/jquery.dataTables.js',
+        'resources/vendor/datatables-bs4/js/dataTables.bootstrap4.js',
+        'resources/vendor/datatables-responsive/js/dataTables.responsive.js',
+        'resources/vendor/datatables-responsive/js/responsive.bootstrap4.js',
         'resources/js/custom-scripts.js'
     ], 'public/js/vendor.js')
 
