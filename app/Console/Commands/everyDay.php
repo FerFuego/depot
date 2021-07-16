@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Support\Facades\Log;
 use App\Services\CommandService;
 use Illuminate\Console\Command;
 
@@ -40,5 +41,7 @@ class everyDay extends Command
     {
         $service = New CommandService();
         $service->diaryTasks();
+
+        Log::debug("Tasks work!");
     }
 }
