@@ -26,12 +26,15 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview">
-                    <a href="{{ url('/') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+                @cannot('isProveedor')    
+                    <li class="nav-item has-treeview">
+                        <a href="{{ url('/') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                @endcannot
+
                 @can('isSuper')
                     <li class="nav-item">
                         <a href="{{ url('/roles') }}" class="nav-link">
@@ -40,6 +43,7 @@
                         </a>
                     </li>
                 @endcan
+
                 @canany(['isSuper','isAdmin'])
                     <li class="nav-item">
                         <a href="{{ url('/users') }}" class="nav-link">
@@ -111,7 +115,8 @@
                         </a>
                     </li>
                 @endcanany
-                @canany(['isEncargado','isGerente'])
+
+                @can('isGerente')
                     <li class="nav-item">
                         <a href="{{ url('/bookings') }}" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
@@ -130,7 +135,32 @@
                             <p>Tareas</p>
                         </a>
                     </li>
-                @endcanany
+                @endcan
+
+                @can('isEncargado')
+                    <li class="nav-item">
+                        <a href="{{ url('/sales') }}" class="nav-link">
+                            <i class="nav-icon fas fa-money-check-alt"></i>
+                            <p>Ventas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/todos/check') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>Tareas</p>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('isProveedor')
+                    <li class="nav-item">
+                        <a href="{{ url('/bookings/create') }}" class="nav-link">
+                            <i class="nav-icon fas fa-calendar"></i>
+                            <p>Turnos</p>
+                        </a>
+                    </li>
+                @endcan
+
                 <li class="nav-item has-treeview">
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -141,7 +171,6 @@
                             @csrf
                         </form>
                     </a>
-
                 </li>
             </ul>
         </nav>

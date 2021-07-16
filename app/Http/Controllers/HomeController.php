@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 use App\Models\Sale;
 use App\Services\SaleService;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
+    
     /**
      * Show the application dashboard.
      *
@@ -26,6 +27,12 @@ class HomeController extends Controller
      */
     public function index(SaleService $service)
     {
+        $user = Auth::user();
+        
+        if ($user->roles->first()->slug == 'proveedor') {            
+            return redirect('bookings/create');
+        }
+
         $sucursals = auth()->user()->sucursals;
         
         $sucursals_ids = $sucursals->pluck('id');

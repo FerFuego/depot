@@ -26,12 +26,6 @@ Route::post('signup', 'Auth\RegisterController@register');
 Route::get('forgot', 'Auth\ForgotPasswordController@showLinkRequestForm');
 Route::get('forgot/{token}', 'Auth\ResetPasswordController@showResetForm');
 
-// suppliers view
-Route::get('proveedores', function() {
-    return view('suppliers')->with('result');
-});
-
-
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('users', 'UsersController')->middleware('role:superadmin,admin');
@@ -53,10 +47,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('sales/filter', 'SalesController@filter');
     Route::post('bookings/filter', 'BookingController@filter');
     Route::post('bookings/state', 'BookingController@state');
+    Route::post('bookings/day', 'BookingController@getBookingsDay');
+    Route::post('bookings', 'BookingController@store')->name('storeBooking');
 });
 
-Route::post('bookings/day', 'BookingController@getBookingsDay');
-Route::post('bookings', 'BookingController@store')->name('storeBooking');
 
 if (Auth::id()) {
     return $next($request);

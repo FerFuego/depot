@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Gestion de Reservas</h1>
+          <h1>Gestion de Turnos</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('/offers') }}">Deposito</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/offers') }}">Reservas</a></li>
             <li class="breadcrumb-item active">Nueva Reserva</li>
           </ol>
         </div>
@@ -24,7 +24,7 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Crear Reserva</h3>
+            <h3 class="card-title">Crear Turno para Acceso a Deposito</h3>
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                 <i class="fas fa-minus"></i></button>
@@ -57,6 +57,14 @@
         </div>
         <!-- /.card -->
       </div>
+      <div class="col-6">
+        @if (isset($result))
+            <div class="card-footer">
+                <h4 class="text-success">Reservado para el dia: {{  \Carbon\Carbon::parse($result->start)->format('d-m-Y') }} <br> 
+                    A las {{  \Carbon\Carbon::parse($result->start)->format('H:i') }}</h4>
+            </div>
+        @endif
+    </div>
     </div>
     <div class="row">
       <div class="col-12">
