@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('notifications', 'NotificationController');
     Route::resource('offers', 'OfferController');
     Route::resource('rrhhs', 'RRhhController');
+    Route::post('bookings/report', 'BookingController@show')->name('bookings.report');
+    Route::post('bookings/report/month', 'BookingController@report')->name('bookings.report.month');
     Route::resource('bookings', 'BookingController');
     Route::get('download/{file}', function ($file) {
         return Response::download( public_path('uploads/') . $file);

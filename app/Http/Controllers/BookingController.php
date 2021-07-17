@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Services\BookingService;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class BookingController extends Controller
 {
@@ -45,24 +46,18 @@ class BookingController extends Controller
     public function store(Request $request, BookingService $service)
     {
 
-        //dd($request->all());
-
         // chek if is a valid date
         $status = $service->checkDate($request);
 
         if ($status !== 'good' && $status !== 'today') {
             session()->flash('error', $status);
-            return view('suppliers', [
-                'result' => ''
-            ]);
+            return redirect()->back();
         }
 
         // check if there are availble places
         if (!$service->checkPlaces($request)) {
             session()->flash('error', 'No hay lugares disponibles en este dia');
-            return view('suppliers', [
-                'result' => ''
-            ]);
+            return redirect()->back();
         }
 
         // get params
@@ -81,14 +76,7 @@ class BookingController extends Controller
         
         session()->flash('success', 'Reserva cargada correctamente');
         
-        $previous = url()->previous();
-        $previous = explode('/', $previous);
-
-        if (end($previous) == 'proveedores') {
-            return view('suppliers')->with('result', $booking);
-        } else {
-            return redirect()->back()->with('result', $booking);
-        }
+        return redirect()->back()->with('result', $booking);
     }
 
     /* public function store(Request $request, BookingService $service)
@@ -218,5 +206,45 @@ class BookingController extends Controller
     public function getBookingsDay (Request $request) {
         $bookings = Booking::where('day', $request[0])->get();
         return response()->json($bookings);
+    }
+
+    /**
+     * Print Report
+     */
+    public function show(Request $request) {
+
+        $bookings = Booking::where('day', $request->date)->get();
+
+        $data = array(
+            'day' => $request->date,
+            'bookings' => $bookings,
+        );
+    
+        $pdf = \PDF::loadView('bookings.show', $data);
+    
+        return $pdf->download('reporte_reservas.pdf');
+    }
+
+    /**
+     * Print Report Month
+     */
+    public function report(Request $request) {
+
+        $current_month = $request->month ? $request->month : Carbon::now()->format('m');
+        $current_year = $request->year ? $request->year : Carbon::now()->format('Y');
+        $start = strtotime("$current_year-$current_month-01");
+        $bookings = Booking::orderBy('start', 'asc')->get();
+
+        $data = array(
+            'bookings' => $bookings,
+            'start' => $start,
+            'index' => 0,
+            'year' => $current_year,
+            'month' => $current_month
+        );
+    
+        $pdf = \PDF::loadView('bookings.report', $data);
+    
+        return $pdf->download('reporte_reservas_mensuales.pdf');
     }
 }

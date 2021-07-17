@@ -211,6 +211,7 @@
             </div>
             <div class="modal-body" id="bookingsPerDay">Cargando...</div>
             <div class="modal-footer">
+                <a href="{{ route('bookings.report', ['date' => 'TO DO']) }}" class="btn btn-info">Imprimir</a>
                 <button class="btn btn-default" type="button" data-dismiss="modal">Cerrar</button>
             </div>
         </div>

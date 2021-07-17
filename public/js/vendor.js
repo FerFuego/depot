@@ -65776,6 +65776,7 @@ $('#openDayModal').on('show.bs.modal', function (event) {
             html += '</table>';
 
             $('#bookingsPerDay').html(html);
+            $('#bookingsReport').attr('data-day', day);
     })
 
     .catch(function (error) {
@@ -65805,3 +65806,15 @@ function getState(data, time) {
 
     return state;
 }
+
+$(document).ready(function () {
+    $("#cta_month").change(function () {
+        var value = $(this).val();
+        $("#rta_month").val(value);
+    });
+
+    $("#cta_year").change(function () {
+        var value = $(this).val();
+        $("#rta_year").val(value);
+    });
+});

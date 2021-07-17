@@ -36,11 +36,19 @@
                 <div class="card-body">
 
                     <div class="d-flex justify-content-between align-items-center mb-5">
-
-                        <a href="{{ route('bookings.create') }}" class="btn btn-info"><i class="fas fa-plus"></i> Nueva Reserva</a>
+                        <div class="d-flex">
+                            <a href="{{ route('bookings.create') }}" class="btn btn-info mr-2"><i class="fas fa-plus"></i> Nueva Reserva</a>
+                            {!! Form::open(['url' => 'bookings/report/month', 'method' => 'post', 'class' => 'form form-inline']) !!}
+                                {!! Form::token() !!}
+                                {!! Form::hidden('month', $month,   ['class' => 'form-control mr-2', 'id' => 'rta_month',  'min'=>'1', 'max' => '12']) !!}
+                                {!! Form::hidden('year', $year,   ['class' => 'form-control mr-2', 'id' => 'rta_year', 'min'=>'2021', 'max' => '2100']) !!}
+                                {!! Form::submit('Descargar Reporte',  ['class' => 'btn btn-info']) !!}
+                            {!! Form::close() !!}
+                        </div>
     
                         <div>
                             <label for="">Estados:</label>
+                            <span class="badge badge-info">Pendiente</span>
                             <span class="badge badge-success">Completado</span>
                             <span class="badge badge-warning">En Proceso</span>
                             <span class="badge badge-danger">Cancelado</span>
@@ -49,16 +57,21 @@
                         {!! Form::open(['url' => 'bookings/filter', 'method' => 'post', 'class' => 'form form-inline']) !!}
                             {!! Form::token() !!}
                             {!! Form::label('month', 'Mes', ['class' => 'mr-2']) !!}
-                            {!! Form::number('month', $month,   ['class' => 'form-control mr-2', 'min'=>'1', 'max' => '12']) !!}
+                            {!! Form::number('month', $month,   ['class' => 'form-control mr-2', 'id' => 'cta_month','min'=>'1', 'max' => '12']) !!}
                             {!! Form::label('year', 'Año', ['class' => 'mr-2']) !!}
-                            {!! Form::number('year', $year,   ['class' => 'form-control mr-2', 'min'=>'2021', 'max' => '2100']) !!}
+                            {!! Form::number('year', $year,   ['class' => 'form-control mr-2', 'id' => 'cta_year', 'min'=>'2021', 'max' => '2100']) !!}
                             {!! Form::submit('Cargar',  ['class' => 'btn btn-info']) !!}
                         {!! Form::close() !!}
                         
                     </div>
 
                     <div class="table-responsive">
-                        <h2>{{ date('F, Y', $start) }}</h2>
+                        @php
+                            setlocale(LC_ALL, 'es_ES');
+                            $fecha = \Carbon\Carbon::create(date('Y-m', $start));
+                            $mes = $fecha->formatLocalized('%B');
+                        @endphp
+                        <h2>{{ ucfirst($mes) }} {{ date('Y', $start) }}</h2>
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <th>Domingo</th>
@@ -77,7 +90,10 @@
                                             @if( $startpos > 0 && $continue2 < date("t", $start) ) 
                                                 @php $continue2++; @endphp
                                                 <a href="#" data-toggle="modal" data-target="#openDayModal" data-day="{{ $year .'-'. $month .'-'. (($continue2 < 10)?'0':''). $continue2 }}">
-                                                    <h4>{{ $continue2 }}</h4>
+                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                        <h4>{{ $continue2 }}</h4> 
+                                                        <a href="{{ route('bookings.report', ['date' => $year .'-'. $month .'-'. (($continue2 < 10)?'0':''). $continue2]) }}" title="descargar reporte" class="badge badge-default"><i class="fa fa-download"></i></a>
+                                                    </div>
                                                 </a> 
                                                 @foreach($bookings as $booking)
                                                     @if( $booking->day == date('Y-m', $start) .'-'. $continue2 || $booking->day == date('Y-m', $start) .'-0'. $continue2 )
@@ -88,7 +104,7 @@
                                                                 {{ (!$booking->state) ? 'badge-info':''}}
                                                                 {{ ($booking->state == 'Completado') ? 'badge-success':''}}
                                                                 {{ ($booking->state == 'En proceso') ? 'badge-warning':''}}
-                                                                {{ ($booking->state == 'Cancelado') ? 'badge-danger':''}}"
+                                                                {{ ($booking->state == 'Cancelado') ? 'badge-danger d-none':''}}"
                                                                 onclick="openPopUp({{$booking->id}})"
                                                                 title="{{ $booking->state}}"
                                                                 id="{{$booking->id}}">
@@ -101,15 +117,46 @@
                                                                     <div onclick="setStateBooking({{$booking->id}}, 'Completado')" class="bg-success p-2 completado">Completado</div>
                                                                 </div>
                                                                 {{ Str::upper($booking->supplier) ." ". \Carbon\Carbon::create($booking->start)->format('H:i') ." a ". \Carbon\Carbon::create($booking->end)->format('H:i') ." - ". $booking->time ."min" }}
-                                                            </span><br>
+                                                            </span>
+                                                            @if ($booking->state !== 'Cancelado') <br> @endif
                                                         @endif
                                                     @endif
                                                 @endforeach
                                             @endif
                                             @if( $i == 1 && $j == date("w", $start) )
                                                 <a href="#" data-toggle="modal" data-target="#openDayModal" data-day="{{$year .'-'. $month .'-01'}}">
-                                                    <h4>1</h4>
+                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                        <h4>1</h4>
+                                                        <a href="{{ route('bookings.report', ['date' => $year .'-'. $month .'-01']) }}" title="descargar reporte" class="badge badge-default"><i class="fa fa-download"></i></a>
+                                                    </div>                                                    
                                                 </a>
+                                                @foreach($bookings as $booking)
+                                                    @if( $booking->day == date('Y-m', $start) .'-'. $continue2 || $booking->day == date('Y-m', $start) .'-0'. $continue2 )
+                                                        @if ($booking->supplier)
+                                                            <span 
+                                                                style="cursor: pointer; position: relative;"
+                                                                class="badge 
+                                                                {{ (!$booking->state) ? 'badge-info':''}}
+                                                                {{ ($booking->state == 'Completado') ? 'badge-success':''}}
+                                                                {{ ($booking->state == 'En proceso') ? 'badge-warning':''}}
+                                                                {{ ($booking->state == 'Cancelado') ? 'badge-danger d-none':''}}"
+                                                                onclick="openPopUp({{$booking->id}})"
+                                                                title="{{ $booking->state}}"
+                                                                id="{{$booking->id}}">
+                                                                <div 
+                                                                    class="d-none"
+                                                                    id="item_{{$booking->id}}"
+                                                                    style="position: absolute; bottom: 18px; left: 0; display: flex;border-radius: 10px; overflow: hidden;">
+                                                                    <div onclick="setStateBooking({{$booking->id}}, 'En proceso')" class="bg-warning p-2 proceso">En proceso</div>
+                                                                    <div onclick="setStateBooking({{$booking->id}}, 'Cancelado')" class="bg-danger p-2 cancelado">Cancelado</div>
+                                                                    <div onclick="setStateBooking({{$booking->id}}, 'Completado')" class="bg-success p-2 completado">Completado</div>
+                                                                </div>
+                                                                {{ Str::upper($booking->supplier) ." ". \Carbon\Carbon::create($booking->start)->format('H:i') ." a ". \Carbon\Carbon::create($booking->end)->format('H:i') ." - ". $booking->time ."min" }}
+                                                            </span>
+                                                            @if ($booking->state !== 'Cancelado') <br> @endif
+                                                        @endif
+                                                    @endif
+                                                @endforeach
                                                 @php $startpos = $index; @endphp
                                             @endif
                                         </td>
